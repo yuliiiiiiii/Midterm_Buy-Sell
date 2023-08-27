@@ -3,22 +3,34 @@
 
 <head>
   <title>Home Page</title>
-
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+<header>
+  <%- include('partials/_header.ejs'); %>
+</header>
+
 <body>
-  <h1>Have fun! 🥔</h1>
+
+<div class="filter">
+  Art styles:
+  <a href="/category/:id"><img src="**reference to image goes here**"></img></a>
+</div>
+
+<div class="items_container">
+  Availiable Pieces:
+  <div class=item>
+    <a href="/"><img src="**reference to image goes here**"></img></a>.
+    <div class=buttons_list></div>
+    <i class="fa-regular fa-heart" style="color: #8d99ae;"></i>
+    <a href="/message"><i class="fa-regular fa-message" style="color: #8d99ae;"></i></a>
+    <div></div>
+  </div>
+</div>
 </body>
+
+</html>
+
 
 </html>

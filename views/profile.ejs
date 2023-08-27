@@ -13,23 +13,60 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
 
+  <script src="https://kit.fontawesome.com/ba60cfc2d9.js" crossorigin="anonymous"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
+<header>
+  <%- include('partials/_header.ejs'); %>
+</header>
+
 <body>
   <h1>Profile Page</h1>
   <div class="profile_top">
-    avatar logo, name, user id
+    <i class="fa-solid fa-person-walking"></i>
+    <h2>User Name</h2>
+    <h2>Email</h2>
   </div>
   <div class="profile favourites">
     <h4>My Favourites</h4>
-    <div>cards here with pics of each item</div>
+    <div>
+      <!-- to be hidden if there are favourites -->
+      <p>You have no Favourites yet. 🤷 </p>
+
+      <!-- to be hidden if there are no favourites -->
+      <card>
+        <h5>Product Name</h5>
+        <img src="https://placekitten.com/100/100" alt="placekitten">
+        <p>
+          Description <br>
+          Price<br>
+        </p>
+      </card>
+
+    </div>
   </div>
+
   <div class="profile my-products">
-    <h4>My products for sale</h4>
-    <div>cards here with pics of each item</div>
+    <h4>My Art for Sale</h4>
+    <div>
+      <!-- to be hidden if the user is owner of any products -->
+      <p>You have no art for sale yet. 🤷 </p>
+
+      <!-- to be hidden if user has no products -->
+      <card>
+        <h5>Product Name</h5>
+        <img src="https://placekitten.com/110/110" alt="placekitten">
+        <p>
+          Description <br>
+          Price<br>
+        </p>
+      </card>
+
+    </div>
   </div>
+
   <div class="profile_bottom">
     button here to add a new product to sell? - did we decide?
   </div>

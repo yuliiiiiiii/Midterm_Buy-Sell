@@ -1,5 +1,5 @@
 INSERT INTO product_category (product, category)
-  VALUES
+VALUES
   (1, 1),
   (2, 2),
   (3, 4),
@@ -13,4 +13,4 @@ INSERT INTO product_category (product, category)
   (9, 3),
   (10, 2),
   (11, 2),
-  (12, 2)
+  (12, 2);

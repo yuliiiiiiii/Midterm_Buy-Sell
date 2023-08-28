@@ -6,6 +6,7 @@ CREATE TABLE product (
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   link_to_pic TEXT,
+  sold BOOLEAN DEFAULT false,
   price_in_cents INT NOT NULL,
   is_deleted BOOLEAN DEFAULT false
 );

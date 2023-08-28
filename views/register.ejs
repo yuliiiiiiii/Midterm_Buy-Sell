@@ -6,8 +6,13 @@
   <title>Register</title>
 </head>
 <body>
-  <header>
-    <%- include('partials/_header.ejs'); %>
-  </header>
+  <h1>Register</h1>
+  <form method="POST" action="/register">
+    <label for="email">Email</label><br>
+    <input type="email" name="email" placeholder="email"><br>
+    <label for="password">Password</label><br>
+    <input type="password" name="password" placeholder="password"><br>
+    <button type="submit">Register</button>
+  </form>
 </body>
 </html>

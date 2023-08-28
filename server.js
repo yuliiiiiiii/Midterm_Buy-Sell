@@ -31,6 +31,7 @@ app.use(express.static('public'));
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+const profileRoutes = require('./routes/profile');
 const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 // Mount all resource routes
@@ -41,6 +42,7 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
+app.use('/profile', profileRoutes)
 // Note: mount other resources here, using the same pattern above
 
 // Home page

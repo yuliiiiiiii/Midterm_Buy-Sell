@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="https://kit.fontawesome.com/ba60cfc2d9.js" crossorigin="anonymous"></script>
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<!-- <header>
+  <%- include('partials/_header.ejs'); %>
+</header> -->
+
+<body>
+
+ <div class= "profile user-info">
+  <h1>Profile Page</h1>
+    <div class="profile_top">
+      <h3><i class="fa-solid fa-person-walking"></i></h3>
+      <h3><%= userProfile.name %></h3>
+      <h3><%= userProfile.email %></h3>
+    </div>
+  </div>
+
+
+  <div class="profile favourites">
+    <h4>My Favourites</h4>
+    <div>
+      <!-- to be hidden if there are favourites -->
+      <p>You have no Favourites yet. 🤷 </p>
+
+      <!-- to be hidden if there are no favourites -->
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <img src="https://placekitten.com/100/100" alt="placekitten">
+              <span class="card-title">Product Name goes here</span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="fa-regular fa-heart"></i></a>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+              <p>Description Goes here.</p>
+              <p>Price Goes Here</p>
+              <p><a href="#">This is a link to the Indv item</a></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="profile my-products">
+    <h4>My Art for Sale</h4>
+    <div>
+      <!-- to be hidden if the user is owner of any products -->
+      <p>You have no art for sale yet. 🤷 </p>
+
+      <!-- to be hidden if user has no products -->
+      <card>
+        <h5>Product Name</h5>
+        <img src="https://placekitten.com/110/110" alt="placekitten">
+        <p>
+          Description <br>
+          Price<br>
+        </p>
+      </card>
+
+    </div>
+  </div>
+
+  <div class="profile_bottom">
+    button here to add a new product to sell? - did we decide?
+  </div>
+</body>
+
+</html>

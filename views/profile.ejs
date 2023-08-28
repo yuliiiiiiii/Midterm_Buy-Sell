@@ -32,8 +32,8 @@
   <h1>Profile Page</h1>
     <div class="profile_top">
       <h3><i class="fa-solid fa-person-walking"></i></h3>
-      <h3><%= userProfile.name %></h3>
-      <h3><%= userProfile.email %></h3>
+      <h3><%= sellersProducts[0].name %></h3>
+      <h3><%= sellersProducts[0].email %></h3>
     </div>
   </div>
 
@@ -45,24 +45,15 @@
       <p>You have no Favourites yet. 🤷 </p>
 
       <!-- to be hidden if there are no favourites -->
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class="card-image">
-              <img src="https://placekitten.com/100/100" alt="placekitten">
-              <span class="card-title">Product Name goes here</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="fa-regular fa-heart"></i></a>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-              <p>Description Goes here.</p>
-              <p>Price Goes Here</p>
-              <p><a href="#">This is a link to the Indv item</a></p>
-
-            </div>
-          </div>
-        </div>
+      <div>
+        <h5>Product Name</h5>
+        <img src="https://placekitten.com/110/110" alt="placekitten">
+        <p>
+          Description <br>
+          Price<br>
+        </p>
       </div>
+
     </div>
   </div>
 
@@ -75,20 +66,30 @@
       <p>You have no art for sale yet. 🤷 </p>
 
       <!-- to be hidden if user has no products -->
-      <card>
-        <h5>Product Name</h5>
-        <img src="https://placekitten.com/110/110" alt="placekitten">
-        <p>
-          Description <br>
-          Price<br>
-        </p>
-      </card>
+      <div class="row">
+        <div class="col s12 m6">
+          <% for (let product of sellersProducts) { if (!product.is_deleted) { %>
+          <div class="card">
+            <div class="card-image">
+              <img src="<%= product.link_to_pic %>">
+              <span class="card-title"><%= product.product_name %></span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="fa-regular fa-heart"></i></a>
+            </div>
+            <div class="card-content">
+              <p><%= product.description %></p>
+              <p>Change to dollars? <%= product.price_in_cents %></p>
+              <p><a href="#">This is a link to the Indv item</a></p>
+            </div>
+          </div>
+          <% }} %>
+        </div>
+      </div>
 
     </div>
   </div>
 
   <div class="profile_bottom">
-    button here to add a new product to sell? - did we decide?
+    <a class="waves-effect waves-light btn-large"><i class="material-icons right"><i class="fa-solid fa-palette"></i></i>Add an Item to Sell</a>
   </div>
 </body>
 

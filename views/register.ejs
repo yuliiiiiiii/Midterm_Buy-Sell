@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
+  <%- include('partials/_head.ejs'); %>
 </head>
 
 <header>
@@ -12,7 +13,7 @@
 
 <body>
   <h1>Register</h1>
-  <form method="POST" action="/register">
+  <form method="POST" action="/auth/register">
     <label for="email">Email</label><br>
     <input type="email" name="email" placeholder="email"><br>
     <label for="password">Password</label><br>

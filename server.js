@@ -32,8 +32,7 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
-const registerRoute = require('./routes/register');
-const loginRoute = require('./routes/login');
+const authRoutes = require('./routes/auth')
 const productsRoutes = require('./routes/products');
 
 // Mount all resource routes
@@ -42,8 +41,7 @@ const productsRoutes = require('./routes/products');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/register', registerRoute);
-app.use('/login', loginRoute);
+app.use('/auth', authRoutes)
 app.use('/profile', profileRoutes)
 app.use('/add-item', productsRoutes)
 // Note: mount other resources here, using the same pattern above
@@ -54,14 +52,6 @@ app.use('/add-item', productsRoutes)
 
 app.get('/', (req, res) => {
   res.render('index');
-});
-
-app.get('/item_buyer', (req, res) => {
-  res.render('Indi_item_buyer');
-});
-
-app.get('/item_seller', (req, res) => {
-  res.render('Indi_item_seller');
 });
 
 app.listen(PORT, () => {

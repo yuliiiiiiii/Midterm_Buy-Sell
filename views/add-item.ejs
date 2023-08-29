@@ -21,6 +21,8 @@
   <script src="/vendor/jquery-3.0.0.js"></script>
   <!-- <script defer src="/scripts/app.js"></script> -->
 
+  <%- include('partials/_head.ejs'); %>
+
 </head>
 <body>
   <header>
@@ -46,6 +48,41 @@
         <div class="input-field col s12">
           <input id="price" type="number" class="validate">
           <label for="price">Price($$.00)</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="link_to_pic" type="text" class="validate">
+          <label for="link_to_pic">Please provide a link to a picture of the work.</label>
+        </div>
+      </div>
+      <div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="fa-regular fa-paper-plane"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <form action="#" class="col s12">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" type="text" class="validate">
+          <label for="name">Artwork Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="description" type="text" data-length="255" class="validate">
+          <label for="description">Description</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="price_in_cents" type="number" class="validate">
+          <label for="price_in_cents">Price</label>
         </div>
       </div>
       <div class="row">

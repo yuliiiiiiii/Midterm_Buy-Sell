@@ -20,7 +20,7 @@ const addFavorite = function(product) {
   VALUES('${product.id}', '3') RETURNING *;`)
   // artist_id is not dynamic, 'artistId'as second parameter
   .then(res => {
-     return res.rows
+     return res.rows[0];
   })
   .catch (error => {
     console.log(error.message);

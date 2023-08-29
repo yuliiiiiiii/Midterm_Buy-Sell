@@ -9,5 +9,15 @@ const getProductsbySeller = (id) => {
     });
 };
 
+const getProductbyProductId = function(id) {
+  return db
+  .query(`SELECT * FROM product WHERE id = ${id} AND is_deleted = false`)
+  .then(res => {
+    return res.rows[0];
+  })
+  .catch(err => {
+    console.log(err.message);
+  });
+};
 
-module.exports = { getProductsbySeller };
+module.exports = { getProductsbySeller, getProductbyProductId };

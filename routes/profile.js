@@ -46,8 +46,8 @@ router.get('/', (req, res) => {
     .then(data => {
       userData = data[0];
       sellersProducts = data[1];
-      // favoritesData = data[2];
-      templateVars = { userData, sellersProducts };
+      favoritesData = data[2];
+      templateVars = { userData, sellersProducts, favoritesData };
       console.log('promiseALLTHEDATA', data);
       return res.render('profile', templateVars);
     });

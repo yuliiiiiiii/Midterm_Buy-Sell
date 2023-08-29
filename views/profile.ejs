@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title><%= userData.name %>'s Profile</title>
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -22,11 +22,11 @@
   <script defer src="/scripts/app.js"></script>
 </head>
 
-<header>
-  <%- include('partials/_header.ejs'); %>
-</header>
 
 <body>
+  <header>
+    <%- include('partials/_header.ejs'); %>
+  </header>
 
  <div class= "profile user-info">
   <h1>Profile Page</h1>
@@ -45,13 +45,23 @@
       <p>You have no Favourites yet. 🤷 </p>
 
       <!-- to be hidden if there are no favourites -->
-      <div>
-        <h5>Product Name</h5>
-        <img src="https://placekitten.com/110/110" alt="placekitten">
-        <p>
-          Description <br>
-          Price<br>
-        </p>
+      <div class="row">
+        <div class="col s12 m6">
+          <% for (let fav of favoritesData) { if (!fav.is_deleted) { %>
+          <div class="card">
+            <div class="card-image">
+              <img src="<%= fav.link_to_pic %>">
+              <span class="card-title"><%= fav.product_name %></span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="fa-regular fa-heart"></i></a>
+            </div>
+            <div class="card-content">
+              <p><%= fav.description %></p>
+              <p>Change to dollars? <%= fav.price_in_cents %></p>
+              <p><a href="#">This is a link to the Indv item id:<%= fav.product_id %></a></p>
+            </div>
+          </div>
+          <% }} %>
+        </div>
       </div>
 
     </div>
@@ -72,7 +82,7 @@
           <div class="card">
             <div class="card-image">
               <img src="<%= product.link_to_pic %>">
-              <span class="card-title"><%= product.product_name %></span>
+              <span class="card-title"><%= product.name %></span>
               <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="fa-regular fa-heart"></i></a>
             </div>
             <div class="card-content">
@@ -89,7 +99,7 @@
   </div>
 
   <div class="profile_bottom">
-    <a class="waves-effect waves-light btn-large"><i class="material-icons right"><i class="fa-regular fa-image"></i></i>Add Art to Sell</a>
+    <a href="/sell" class="waves-effect waves-light btn-large"><i class="material-icons right"><i class="fa-regular fa-image"></i></i>Add Art to Sell</a>
   </div>
 </body>
 

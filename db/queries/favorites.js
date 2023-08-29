@@ -1,7 +1,7 @@
 const db = require('../connection');
 
 const getFavoritesOfSeller = () => {
-  return db.query(`SELECT *
+  return db.query(`SELECT *, product.name as product_name, artist.name as artist_name
                     FROM favorite
                     JOIN product
                       ON favorite.product_id = product.id

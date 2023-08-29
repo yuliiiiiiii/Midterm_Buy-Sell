@@ -13,5 +13,14 @@ const getFavoritesOfSeller = () => {
     });
 };
 
+//likedItem - An object containing all of the product details
+const addFavorite = function(likedProduct, artistId) {
+  const favoriteId = Object.keys(favorite).length + 1;
+  favorite.id = favoriteId;
+  favorite.product_id = likedProduct.id
+  favorite.artist_id = artistId
+  favorite[favoriteId] = {favorite.id, favorite.product_id, favorite.artist_id}
+  return Promise.resolve(likedProduct);
+};
 
-module.exports = { getFavoritesOfSeller };
+module.exports = { getFavoritesOfSeller, addFavorite };

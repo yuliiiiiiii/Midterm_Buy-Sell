@@ -1,7 +1,8 @@
+const { Pool } = require('pg');
 const db = require('../connection');
 
 const getFavoritesOfSeller = () => {
-  return db.query(`SELECT *, product.name as product_name, artist.name as artist_name
+  return db.query(`SELECT *
                     FROM favorite
                     JOIN product
                       ON favorite.product_id = product.id
@@ -14,13 +15,17 @@ const getFavoritesOfSeller = () => {
 };
 
 //likedItem - An object containing all of the product details
-const addFavorite = function(likedProduct, artistId) {
-  const favoriteId = Object.keys(favorite).length + 1;
-  favorite.id = favoriteId;
-  favorite.product_id = likedProduct.id
-  favorite.artist_id = artistId
-  favorite[favoriteId] = {favorite.id, favorite.product_id, favorite.artist_id}
-  return Promise.resolve(likedProduct);
+const addFavorite = function(product) {
+  return db
+  .query(`INSERT INTO favorite(product_id, artist_id)
+  VALUES('${product.id}', '3') RETURNING *;`)
+  // artist_id is not dynamic, 'artistId'as second parameter
+  .then(res => {
+     return res.rows
+  })
+  .catch (error => {
+    console.log(error.message);
+  });
 };
 
 module.exports = { getFavoritesOfSeller, addFavorite };

@@ -1,27 +1,24 @@
 const express = require('express');
 const db = require('../db/connection');
-const { addFavorite } = require('../db/queries/favorites')
 const router = express.Router();
 const { Template } = require('ejs');
 
 router.post('/profile', (req, res) => {
   // const artistId = req.session.artistId;
-  const artistId = 3;
-  //in post /login, const artistId = req.body.id
+  //in post /login, req.session.artistId = artist.id
   // from artist table
 
-  if (!artistId) {
-    return res.send('Please log in to like product')
-  }
-
-  const newLikedItem = req.body;
+  // if(!artistId) {
+    // return res.send({error: "please log in to like items"})
+  // }
+  const product = req.body;
 
   db
-   .addFavorite(newLikedItem, artistId)
-   .then(newLikedItem => {
-    res.redirect('/profile')
+   .addFavorite(product)
+   .then(favorite => {
+    res.send (favorite);
    })
-   .catch(err => {
+   .catch (err => {
     console.error(err);
     res.send(err);
    });

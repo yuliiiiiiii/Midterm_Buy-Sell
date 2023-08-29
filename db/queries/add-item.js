@@ -11,7 +11,7 @@ const addItem = (name, description, link_to_pic, price_in_cents, seller_id) => {
     return data.rows;
   })
   .catch((err) => {
-    console.log(err.message);
+    console.log(err);
   });
 };
 

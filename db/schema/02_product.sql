@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS product CASCADE;
 
 CREATE TABLE product (
-  id SERIAL PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY,
   seller_id INT REFERENCES artist(id),
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,

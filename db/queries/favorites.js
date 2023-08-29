@@ -1,4 +1,3 @@
-const { Pool } = require('pg');
 const db = require('../connection');
 
 const getFavoritesOfSeller = () => {

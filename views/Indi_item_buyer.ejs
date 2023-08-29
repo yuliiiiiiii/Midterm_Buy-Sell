@@ -15,15 +15,16 @@
   <script defer src="/scripts/app.js"></script>
 </head>
 
-<header>
-  <%- include('partials/_header') %>
-</header>
-
 <body>
+  <%- include('partials/_header') %>
   <img src="https://collectionapi.metmuseum.org/api/collection/v1/iiif/416930/777490/main-image" alt="portrait of Charles V">
   <p>Description: portrait of Charles V</p>
   <p>Price: $15</p>
-  <button>Like</button>
+
+  <form method="post" action="/profile">
+  <button type="submit">Like</button>
+  </form>
+
   <button>Contact seller</button>
 </body>
 

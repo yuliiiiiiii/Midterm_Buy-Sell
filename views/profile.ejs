@@ -102,36 +102,30 @@
 
       <!-- to be hidden if user has no products -->
       <% } else { %>
-
-      <div class="row">
-        <div class="col s12 m6">
+        <div class="container">
+          <div class="row"></div>
           <% for (let product of sellersProducts) { if (!product.is_deleted) { %>
-          <div class="card">
-            <div class="card-image">
-              <img src="<%= product.link_to_pic %>">
-              <span class="card-title"><%= product.name %></span>
-              <a class="btn-floating halfway-fab">
-                <!-- <div class="fixed-action-btn">
-                  <a class="btn-floating btn-large red"> -->
-                    <i class=" material-icons"><i class="fa-solid fa-bars"></i></i>
-                  </a>
-                  <ul>
-                    <li><a class="btn-floating sold"><i class="material-icons">SOLD</i></a></li>
-                    <li><a class="btn-floating delete"><i class="material-icons"><i class="fa-solid fa-trash"></i></i></a></li>
-                    <li><a class="btn-floating fave"><i class="material-icons"><i class="fa-regular fa-heart"></i></i></a></li>
-                  </ul>
-                <!-- </div>
-              </a> -->
+
+            <div class="col 14 m4 s12">
+              <div class="card">
+
+                <div class="card-image">
+                  <img src="<%= product.link_to_pic %>">
+                  <span class="car-title"><%= product.name %></span>
+                  <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
+                </div>
+
+                <div class="card-content">
+                  <p><%= product.description %></p>
+                  <p><%= (product.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %></p>
+                  <p><a href="/auth/login">This is a link to the Indv item</a></p>
+                </div>
+
+              </div>
             </div>
-            <div class="card-content">
-              <p><%= product.description %></p>
-              <p><%= (product.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %></p>
-              <p><a href="#">This is a link to the Indv item</a></p>
-            </div>
-          </div>
           <% }} %>
+          </div>
         </div>
-      </div>
       <% } %>
 
 

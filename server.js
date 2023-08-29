@@ -54,14 +54,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/item_buyer', (req, res) => {
-  res.render('Indi_item_buyer');
-});
-
-app.get('/item_seller', (req, res) => {
-  res.render('Indi_item_seller');
-});
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

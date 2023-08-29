@@ -16,7 +16,8 @@ router.post('/profile', (req, res) => {
   db
    .addFavorite(product)
    .then(favorite => {
-    res.send (favorite);
+    // res.send (favorite);
+    // need to create a function to append card to the profile favorite section
    })
    .catch (err => {
     console.error(err);

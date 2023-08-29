@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
   Promise.all([  //this contains an array with two queries
 
-    userQueries.getUserById() //this will need to be made dynamic, here & in query??
+    userQueries.getUserById(3) //this will need to be made dynamic, here & in query??
       .then(data => {
         const userData = data.rows[0];
         // console.log("---- user data", userData)
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
     //     .json({ error: err.message });
     // }),
 
-    productQueries.getProductsbySeller() //dynamic
+    productQueries.getProductsbySeller(3) //dynamic
       .then(data => {
         const sellersProducts = data;
         // console.log("--------product data", sellersProducts)
@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
         return sellersProducts;
       }),
 
-    favoriteQueries.getFavoritesOfSeller() // dynamic, here & in query??
+    favoriteQueries.getFavoritesOfSeller(3) // dynamic, here & in query??
       .then(data => {
         const favoritesData = data;
         console.log("---- favorites data", favoritesData);

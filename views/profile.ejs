@@ -21,6 +21,7 @@
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script src="/scripts/profile.js"></script>
 </head>
 
 
@@ -74,6 +75,7 @@
     <h4>My Art for Sale</h4>
     <div>
       <!-- to be hidden if the user is owner of any products -->
+
       <p>You have no art for sale yet. 🤷 </p>
 
       <!-- to be hidden if user has no products -->
@@ -84,11 +86,22 @@
             <div class="card-image">
               <img src="<%= product.link_to_pic %>">
               <span class="card-title"><%= product.name %></span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="fa-regular fa-heart"></i></a>
+              <a class="btn-floating halfway-fab">
+                <!-- <div class="fixed-action-btn">
+                  <a class="btn-floating btn-large red"> -->
+                    <i class=" material-icons"><i class="fa-solid fa-bars"></i></i>
+                  </a>
+                  <ul>
+                    <li><a class="btn-floating sold"><i class="material-icons">SOLD</i></a></li>
+                    <li><a class="btn-floating delete"><i class="material-icons"><i class="fa-solid fa-trash"></i></i></a></li>
+                    <li><a class="btn-floating fave"><i class="material-icons"><i class="fa-regular fa-heart"></i></i></a></li>
+                  </ul>
+                <!-- </div>
+              </a> -->
             </div>
             <div class="card-content">
               <p><%= product.description %></p>
-              <p>Change to dollars? <%= (product.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %></p>
+              <p><%= (product.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %></p>
               <p><a href="#">This is a link to the Indv item</a></p>
             </div>
           </div>

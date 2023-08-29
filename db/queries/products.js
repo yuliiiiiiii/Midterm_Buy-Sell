@@ -1,9 +1,9 @@
 const db = require('../connection');
 
-const getProductsbySeller = () => {
+const getProductsbySeller = (id) => {
   return db.query(`SELECT *
                   FROM product
-                  WHERE seller_id = 3;`)
+                  WHERE seller_id = ${id};`)
     .then(data => {
       return data.rows;
     });

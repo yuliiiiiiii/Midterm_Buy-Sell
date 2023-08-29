@@ -7,10 +7,10 @@ const getUsers = () => {
     });
 };
 
-const getUserById = () => {
+const getUserById = (id) => {
   return db.query(`SELECT *
                     FROM artist
-                    WHERE id=3;`) //this will need to be made dynamic
+                    WHERE id=${id};`)
     .then(data => {
       console.log("user/artist by id data", data.rows)
       return data

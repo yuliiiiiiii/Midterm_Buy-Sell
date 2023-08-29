@@ -33,6 +33,8 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
 const authRoutes = require('./routes/auth')
+const productsRoutes = require('./routes/products');
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -41,6 +43,7 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/auth', authRoutes)
 app.use('/profile', profileRoutes)
+app.use('/add-item', productsRoutes)
 // Note: mount other resources here, using the same pattern above
 
 // Home page

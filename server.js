@@ -9,6 +9,7 @@ const cookieSession = require('cookie-session');
 
 //
 const productQueries = require('./db/queries/products');
+const categoryQueries = require('./db/queries/categories');
 
 
 const PORT = process.env.PORT || 8080;
@@ -73,12 +74,25 @@ app.get('/', (req, res) => {
   let dbquery
   const {min, max} = req.query
 if (min && max) {
-  dbquery = productQueries.filterProductByPrice(min, max)
+  dbquery = productQueries.filterProductByPrice((min*100), (max*100))
 } else {
   dbquery = productQueries.getAllProducts()
 }
+Promise.all([
   dbquery.then((allArtData) => {
-    const templateVars = { allArtData }
+    return allArtData
+  }),
+  categoryQueries.getCategoriesByProduct(6) // needs to dynamic from product <-- this will need to be on more than the profile page???
+    .then(data => {
+      const categoryData = data;
+      console.log("---- category data", categoryData);
+      return categoryData
+    }),
+  ])
+  .then (data => {
+    allArtData = data[0];
+    categoryData = data[1]
+    const templateVars = { allArtData, categoryData }
     console.log("testing templateVars", templateVars)
     res.render('index', templateVars)
   })

@@ -75,7 +75,7 @@
 
     <!-- to be hidden if there are favourites -->
     <% if (favoritesData.length < 1 || favoritesData==undefined) { %>
-      <h5>You have no Favourites yet. 🤷 </h5>
+      <h5>You have no Favourites yet. </h5>
 
       <!-- to be hidden if user has no products -->
       <% } else { %>
@@ -103,7 +103,7 @@
 
     <!-- to be hidden if the user is owner of any products -->
     <% if (sellersProducts.length < 1 || sellersProducts==undefined) { %>
-      <h5>You have no art for sale yet. 🤷 </h5>
+      <h5>You have no art for sale yet. </h5>
 
       <!-- to be hidden if user has no products -->
       <% } else { %>
@@ -119,13 +119,15 @@
           </div>
         </div>
       <% } %>
-
   </div>
 
-  <div class="profile_bottom">
-    <a href="/add-item" class="waves-effect waves-light btn-large"><i class="material-icons right"><i
-          class="fa-regular fa-image"></i></i>Add Art to Sell</a>
+  <div class="row">
+    <div class="profile_bottom">
+      <a href="/add-item" class="waves-effect waves-light btn-large"><i class="material-icons right"><i
+        class="fa-regular fa-image"></i></i>Add Art to Sell</a>
+    </div>
   </div>
+
 
   <!-- <script>
     document.addEventListener("DOMContentLoaded", function(){

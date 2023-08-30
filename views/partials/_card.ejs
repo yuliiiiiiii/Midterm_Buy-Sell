@@ -5,7 +5,7 @@
     <span class="card-title" style= "color:black; font-weight: bold";>
       <%= item.name %>
     </span>
-    <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
+      <% if (item.sold) { %>   <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a> <% } %>
   </div>
 
   <div class="card-content">

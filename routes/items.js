@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
   // req.params is an object, like {"id":"1"}
   // so need req.params.id to get the integer 1
   const userId = 1;
-  // not dynamic
+  // not dynamic!!!!!
   // const userId = req.session.user_id => need to set <req.session.user_id = artist.id> at log in
 
   db

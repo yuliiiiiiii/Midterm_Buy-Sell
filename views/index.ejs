@@ -6,6 +6,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%- include('partials/_head.ejs'); %>
+  <script src="/public/scripts/filter.js"></script>
+  <script src="/vendor/jquery-3.0.0.js"></script>
+
 </head>
 
 <header>
@@ -26,6 +29,22 @@
   HAMBURGER MENU OF CATEGORIES GOES HERE
 </div>
 
+<div class="container">
+<form method="GET" action="/">
+  <div class="row">
+    <div class="input-field col s6">
+      <input name="min" id="min" type="number" class="validate">
+      <label for="Min">$ Min</label>
+    </div>
+    <div class="input-field col s6">
+      <input name="max" id="max" type="number" class="validate">
+      <label for="max">$ Max</label>
+    </div>
+    <button type="submit" id="filterByPriceButton">Filter Data</button>
+  </div>
+</form>
+</div>
+
 <!-- <div class="items_container">
   Availiable Pieces:
   <div class=item>
@@ -38,32 +57,13 @@
 </div> -->
 
 
-<div class="container">
+<div class="container allTheCards">
   <div class="row"></div>
-  <% for (art of allArtData) { if (!art.is_deleted) { %>
+  <% for (item of allArtData) { if (!item.is_deleted) { %>
 
     <div class="col 14 m4 s12">
-      <div class="card">
+      <%- include('partials/_card.ejs', {item}); %>
 
-        <div class="card-image">
-          <img src="<%= art.link_to_pic %>" class="materialboxed">
-          <span class="card-title">
-            <%= art.name %>
-          </span>
-          <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
-        </div>
-
-        <div class="card-content">
-          <p>
-            <%= art.description %>
-          </p>
-          <p>
-            <%= (art.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %>
-          </p>
-          <p><a href="/auth/login">This is a link to the Indv item</a></p>
-        </div>
-
-      </div>
     </div>
   <% }} %>
   </div>

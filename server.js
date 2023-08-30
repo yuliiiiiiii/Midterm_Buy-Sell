@@ -61,16 +61,17 @@ app.use('/items', itemsRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  productQueries.getAllProducts()
-  .then((data) => {
-    const allArtData = data.rows
-    console.log("logging all art---------------------", allArtData)
-    return allArtData
-  })
-  .then(data => {
-    allArtData = data
-    templateVars = { allArtData }
-    return res.render('index', templateVars)
+  let dbquery
+  const {min, max} = req.query
+if (min && max) {
+  dbquery = productQueries.filterProductByPrice(min, max)
+} else {
+  dbquery = productQueries.getAllProducts()
+}
+  dbquery.then((allArtData) => {
+    const templateVars = { allArtData }
+    console.log("testing templateVars", templateVars)
+    res.render('index', templateVars)
   })
   .catch(err => {
     res

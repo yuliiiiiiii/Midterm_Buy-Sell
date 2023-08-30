@@ -1,0 +1,25 @@
+<div class="card">
+
+  <div class="card-image">
+    <img src="<%= item.link_to_pic %>" class="materialboxed">
+    <span class="card-title" style= "color:black; font-weight: bold";>
+      <%= item.name %>
+    </span>
+    <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
+  </div>
+
+  <div class="card-content">
+    <% for (let cat of categoryData) { %>
+      <span class="new badge" data-badge-caption="<%= cat.name%>"></span>
+      <% } %>
+    <p>
+      By: seller id to change to name<%= item.seller_id %>
+      <%= item.description %>
+    </p>
+    <p>
+      <%= (item.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %>
+    </p>
+    <p><a href="/auth/login">This is a link to the Indv item <%= item.id %></a></p>
+  </div>
+
+</div>

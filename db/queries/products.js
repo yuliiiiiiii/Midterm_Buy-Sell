@@ -2,6 +2,7 @@ const db = require('../connection');
 
 const getAllProducts = () => {
   return db.query (`SELECT * FROM product`)
+  .then(data => data.rows)
 }
 
 const getProductsbySeller = (id) => {
@@ -28,8 +29,9 @@ const getProductbyProductId = function(id) {
 const filterProductByPrice = (min, max) => {
   return db.query(`SELECT *
                     FROM product
-                    WHERE price_in_cents BETWEN ${min} AND ${max};`)
+                    WHERE price_in_cents BETWEEN ${min} AND ${max};`)
     .then(data => {
+      console.log("BY PRICE---------", data.rows)
       return data.rows;
     });
 }

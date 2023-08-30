@@ -29,31 +29,96 @@
     <!-- <%- include('partials/_header.ejs'); %> -->
   </header>
 
-  <div class="row">
-    <form method="post" action="/add-item" class="col s12">
-
+  <div class="container row">
+    <form method="post" action="/add-item" class="col">
+      <h3>Add your Artwork for Sale</h3>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field">
           <input name="name" id="name" type="text" class="validate">
           <label for="name">Artwork Title</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field">
           <input name="description" id="description" type="text" data-length="255" class="validate">
           <label for="description">Description</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field">
           <input name="price" id="price" type="number" class="validate">
           <label for="price">Price($$.00)</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field">
           <input name="link_to_pic" id="link_to_pic" type="text" class="validate">
           <label for="link_to_pic">Please provide a link to a picture of the work.</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <p>
+            <table>
+              <thead>Category (choose as many as apply)</thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <label>
+                      <input name=1 type="checkbox" />
+                      <span>Portraits</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input name=2 type="checkbox" />
+                      <span>Landscape</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input name=3 type="checkbox" />
+                      <span>Still Life</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input name=4 type="checkbox" />
+                      <span>People (or Slice of Life)</span>
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>
+                      <input name=5 type="checkbox" />
+                      <span>Animals</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input name=7 type="checkbox" />
+                      <span>Abstract</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input name=8 type="checkbox" />
+                      <span>Paintings</span>
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input name=9 type="checkbox" />
+                      <span>Sculpture</span>
+                    </label>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+          </p>
         </div>
       </div>
       <div>

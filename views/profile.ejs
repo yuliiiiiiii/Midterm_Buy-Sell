@@ -84,30 +84,7 @@
           <% for (let fav of favoritesData) { if (!fav.is_deleted) { %>
 
             <div class="col 14 m4 s12">
-              <div class="card">
-
-                <div class="card-image">
-                  <img src="<%= fav.link_to_pic %>" class="materialboxed">
-                  <span class="card-title" style="color:black; font-weight: bold;">
-                    <%= fav.product_name %>
-                  </span>
-                  <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
-                </div>
-
-                <div class="card-content">
-                  <% for (let cat of categoryData) { %>
-                  <span class="new badge" data-badge-caption="<%= cat.name%>"></span>
-                  <% } %>
-                  <p>
-                    <%= fav.description %>
-                  </p>
-                  <p>
-                    <%= (fav.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %>
-                  </p>
-                  <p><a href="/auth/login">This is a link to the Indv item</a></p>
-                </div>
-
-              </div>
+              <%- include('partials/_card.ejs', {item}); %>
             </div>
           <% }} %>
           </div>
@@ -132,31 +109,12 @@
       <% } else { %>
         <div class="container">
           <div class="row"></div>
-          <% for (let product of sellersProducts) { if (!product.is_deleted) { %>
+          <% for (let item of sellersProducts) { if (!item.is_deleted) { %>
 
             <div class="col 14 m4 s12">
-              <div class="card">
-
-                <div class="card-image">
-                  <img src="<%= product.link_to_pic %>" class="materialboxed">
-                  <span class="card-title">
-                    <%= product.name %>
-                  </span>
-                  <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
-                </div>
-
-                <div class="card-content">
-                  <p>
-                    <%= product.description %>
-                  </p>
-                  <p>
-                    <%= (product.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %>
-                  </p>
-                  <p><a href="/auth/login">This is a link to the Indv item</a></p>
-                </div>
-
-              </div>
+              <%- include('partials/_card.ejs', {item}); %>
             </div>
+
           <% }} %>
           </div>
         </div>

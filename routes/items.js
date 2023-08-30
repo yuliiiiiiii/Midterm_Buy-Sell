@@ -25,7 +25,15 @@ router.get('/:id', (req, res) => {
 //   is_deleted: false
 // }
 
-    res.send( product )
+    // res.send( product )
+    const templateVars = {
+      picture: product.link_to_pic,
+      name: product.name,
+      description: product.description,
+      price: `$${product.price_in_cents / 100}`,
+      sold: product.sold
+    };
+    res.render("Indi_item_buyer", templateVars);
 
    })
    .catch(error => {

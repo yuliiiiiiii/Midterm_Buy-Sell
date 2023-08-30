@@ -6,6 +6,7 @@ INSERT INTO artist (name, email, password)
     ('Katsushika Hokusai', 'hokusai@example.com', '$2b$10$vko5.HA6B59dGs/Ypabc6O0wS0tbAEuEIeRJkITAm8FFL9jBws0LG'),
     ('Hans Baldung', 'hansB@example.com', '$2b$10$vko5.HA6B59dGs/Ypabc6O0wS0tbAEuEIeRJkITAm8FFL9jBws0LG'),
     ('Paul Cézanne', 'paul@example.com', '$2b$10$vko5.HA6B59dGs/Ypabc6O0wS0tbAEuEIeRJkITAm8FFL9jBws0LG'),
-    ('Georgia 0Keefe', 'flowers@example.com', '$2b$10$vko5.HA6B59dGs/Ypabc6O0wS0tbAEuEIeRJkITAm8FFL9jBws0LG');
+    ('Georgia 0Keefe', 'flowers@example.com', '$2b$10$vko5.HA6B59dGs/Ypabc6O0wS0tbAEuEIeRJkITAm8FFL9jBws0LG'),
+    ('Auguste Rodin', 'sculpteur@example.com', '$2b$10$vko5.HA6B59dGs/Ypabc6O0wS0tbAEuEIeRJkITAm8FFL9jBws0LG');
 
 --passwords are all "password"

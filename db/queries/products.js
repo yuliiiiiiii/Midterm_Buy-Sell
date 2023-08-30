@@ -13,6 +13,17 @@ const getProductsbySeller = (id) => {
     });
 };
 
+const getProductbyProductId = function(id) {
+  return db
+  .query(`SELECT * FROM product WHERE id =$1 AND is_deleted = $2;`, [id, false])
+  .then(res => {
+    // console.log("+++++", res.rows[0]);
+    return res.rows[0];
+  })
+  .catch(err => {
+    console.log("-------", err.message);
+  });
+};
 const filterProductByPrice = (min, max) => {
   return db.query(`SELECT *
                     FROM product
@@ -33,4 +44,4 @@ const filterProductByCategory = (id) => {
     });
 }
 
-module.exports = { getAllProducts, getProductsbySeller, filterProductByCategory, filterProductByPrice };
+module.exports = { getAllProducts, getProductsbySeller, getProductbyProductId, filterProductByCategory, filterProductByPrice };

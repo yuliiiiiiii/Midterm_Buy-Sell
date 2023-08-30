@@ -42,6 +42,7 @@ router.post("/register", (req, res) => {
 
 //login
 router.get("/login", (req, res) => {
+
   res.render('login');
 });
 
@@ -57,15 +58,13 @@ const login = function(email, password) {
 
 router.post('/login', (req, res) => {
   const { email, password } = req.body;
-  console.log("Test");
   login(email, password)
     .then(artist => {
 
       if (!artist) {
-        res.send({ error: "error" });
+        res.send({ error: "No account found with that email, please register to continue!"});
         return;
       }
-      console.log("test1")
       req.session.artist_id = artist.rows[0].id;
       //res.send({ user: { name: artist.rows[0].name, email: artist.rows[0].email, id: artist.rows[0].id } });
       res.redirect("/");

@@ -70,8 +70,8 @@
     </div>
   </div>
 
-  <div class="profile favorites">
-  <h4>My Favourites</h4>
+  <div class="favorites">
+  <h4 style="text-align:center;">My Favourites</h4><hr/>
 
     <!-- to be hidden if there are favourites -->
     <% if (favoritesData.length < 1 || favoritesData==undefined) { %>
@@ -88,13 +88,16 @@
 
                 <div class="card-image">
                   <img src="<%= fav.link_to_pic %>" class="materialboxed">
-                  <span class="card-title">
-                    <%= fav.name %>
+                  <span class="card-title" style="color:black; font-weight: bold;">
+                    <%= fav.product_name %>
                   </span>
                   <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
                 </div>
 
                 <div class="card-content">
+                  <% for (let cat of categoryData) { %>
+                  <span class="new badge" data-badge-caption="<%= cat.name%>"></span>
+                  <% } %>
                   <p>
                     <%= fav.description %>
                   </p>
@@ -112,9 +115,14 @@
       <% } %>
 
   </div>
+  <br>
+  <br>
+  <br>
+
+
 
   <div class="profile my-products">
-  <h4>My Art for Sale</h4>
+  <h4 style="text-align:center;">My Art for Sale</h4><hr/>
 
     <!-- to be hidden if the user is owner of any products -->
     <% if (sellersProducts.length < 1 || sellersProducts==undefined) { %>

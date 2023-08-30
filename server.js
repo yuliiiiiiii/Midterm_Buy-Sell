@@ -49,8 +49,10 @@ app.use('/users', usersRoutes);
 app.use('/auth', authRoutes)
 app.use('/profile', profileRoutes)
 app.use('/add-item', productsRoutes)
-// app.use('', indexRoutes)
+// app.use('/', indexRoutes)
+
 // Note: mount other resources here, using the same pattern above
+
 
 // Home page
 // Warning: avoid creating more routes in this file!

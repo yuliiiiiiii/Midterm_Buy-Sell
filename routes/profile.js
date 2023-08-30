@@ -4,11 +4,12 @@ const db = require('../db/connection');
 const userQueries = require('../db/queries/users');
 const productQueries = require('../db/queries/products');
 const favoriteQueries = require('../db/queries/favorites');
+const categoryQueries = require('../db/queries/categories')
 const { Template } = require('ejs');
 
 router.get('/', (req, res) => {
 
-  Promise.all([  //this contains an array with two queries
+  Promise.all([  //this contains an array with four queries
 
     userQueries.getUserById(3) //this will need to be made dynamic, here & in query??
       .then(data => {
@@ -36,19 +37,27 @@ router.get('/', (req, res) => {
     favoriteQueries.getFavoritesOfSeller(3) // dynamic, here & in query??
       .then(data => {
         const favoritesData = data;
-        console.log("---- favorites data", favoritesData);
+        // console.log("---- favorites data", favoritesData);
         // const templateVars = { userProfile }
         // return res.render('profile', templateVars)
         return favoritesData;
-      })
+      }),
+
+    categoryQueries.getCategoriesByProduct(6) // needs to dynamic from product <-- this will need to be on more than the profile page???
+    .then(data => {
+      const categoryData = data;
+      console.log("---- category data", categoryData);
+      return categoryData;
+    }),
   ])
 
     .then(data => {
       userData = data[0];
       sellersProducts = data[1];
       favoritesData = data[2];
-      templateVars = { userData, sellersProducts, favoritesData };
-      console.log('promiseALLTHEDATA', data);
+      categoryData = data[3]
+      templateVars = { userData, sellersProducts, favoritesData , categoryData};
+      // console.log('promiseALLTHEDATA', data);
       return res.render('profile', templateVars);
     });
 });

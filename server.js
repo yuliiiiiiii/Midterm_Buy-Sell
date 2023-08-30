@@ -34,7 +34,7 @@ const usersRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
 const authRoutes = require('./routes/auth')
 const productsRoutes = require('./routes/products');
-
+const itemsRoutes = require('./routes/items');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -44,6 +44,8 @@ app.use('/users', usersRoutes);
 app.use('/auth', authRoutes)
 app.use('/profile', profileRoutes)
 app.use('/add-item', productsRoutes)
+app.use('/items', itemsRoutes);
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -57,5 +59,24 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+// app.get('/item/:id', (req, res) => {
+//   // res.render('Indi_item_buyer');
+//   console.log('url')
+//   const product_id = req.params.id
+
+
+
+//   db
+//    .getProductbyProductId(product_id)
+//    .then( product => {
+//     //product is an object
+//     res.send( product )
+//    })
+//    .catch(error => {
+//     console.error(error);
+//     res.send(error)
+//    })
+// });
 
 

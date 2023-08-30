@@ -29,3 +29,4 @@ router.post('/profile', (req, res) => {
 });
 
 module.exports = router;
+// server.js hasn't imported this router yet!

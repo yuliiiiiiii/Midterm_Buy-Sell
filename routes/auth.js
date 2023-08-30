@@ -1,80 +1,83 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const { getUserByEmail, addUser } = require('../db/queries/users.js');
+const usersQuery = require('../db/queries/users.js');
 
-module.exports = function(router, database) {
-  //registration
-  router.get('/register', (req, res) => {
-    res.render('register');
-  });
+//registration
+router.get('/register', (req, res) => {
+  res.render('register');
+});
 
-  router.post("/register", (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    const name = req.body.name;
-    //checks for incomplete forms and sends error 400 if incomplete
-    if (!email || !password || !name) {
+router.post("/register", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const name = req.body.name;
+  //checks for incomplete forms and sends error 400 if incomplete
+  if (!email || !password || !name) {
+    res.status(400);
+    res.send("Please fill out both the email and password boxes!");
+  }
+
+  let userData = usersQuery.getUserByEmail(email);
+  userData.then(function(result) {
+    console.log(result.rows);
+    if (result.rows.length = 0) {
       res.status(400);
-      res.send("Please fill out both the email and password boxes!");
+      res.send("Email is already in use, please login");
     }
+    else {
+      const newPassword = bcrypt.hashSync(password, 10);
+      usersQuery.addUser(name, email, newPassword).then(
+        (artist) => {
+          req.session.artist_id = artist.rows[0].id;
+          res.redirect("/");
+        }
+      );
+    }
+  })
+    .catch((error) => {
+      console.error(error);
+    });
+});
 
-    let userData = getUserByEmail(email);
-    userData.then(function(result) {
-      console.log(result.rows);
-      if (result.rows.length = 0) {
-        res.status(400);
-        res.send("Email is already in use, please login");
-      }
-      else {
-        const artist = req.body;
-        artist.password = bcrypt.hashSync(password, 10);
-        database.addUser(artist,);
-      }
-      req.session.userId = user.id;
-      res.redirect("/");
-    })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
+//login
+router.get("/login", (req, res) => {
+  res.render('login');
+});
 
-  //login
-  router.get("/login", (req, res) => {
-    res.render('login');
-  });
-
-  const login =  function(email, password) {
-    return database.getUserWithEmail(email)
+const login = function(email, password) {
+  return usersQuery.getUserByEmail(email)
     .then(artist => {
-      if (bcrypt.compareSync(password, artist.password)) {
+      if (bcrypt.compareSync(password, artist.rows[0].password)) {
         return artist;
       }
       return null;
     });
-  }
-  exports.login = login;
-
-  router.post('/login', (req, res) => {
-    const {email, password} = req.body;
-    login(email, password)
-      .then(user => {
-        if (!user) {
-          res.send({error: "error"});
-          return;
-        }
-        req.session.userId = user.id;
-        res.send({user: {name: user.name, email: user.email, id: user.id}});
-      })
-      .catch(e => res.send(e));
-  });
-
-  //logout
-  router.post("/logout", (req, res) => {
-    res.clearCookie('session');
-    res.redirect("/");
-  });
-
-
-
 };
+
+router.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  console.log("Test");
+  login(email, password)
+    .then(artist => {
+
+      if (!artist) {
+        res.send({ error: "error" });
+        return;
+      }
+      console.log("test1")
+      req.session.artist_id = artist.rows[0].id;
+      //res.send({ user: { name: artist.rows[0].name, email: artist.rows[0].email, id: artist.rows[0].id } });
+      res.redirect("/");
+    })
+    .catch(e => res.send(e));
+});
+
+
+//logout
+router.post("/logout", (req, res) => {
+  res.clearCookie('session');
+  res.redirect("/");
+});
+
+module.exports = router;

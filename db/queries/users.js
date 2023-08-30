@@ -34,12 +34,15 @@ const getUserById = (id) => {
     });
 };
 
-const addUser = (name, email, password, avatar_choice) => {
+const addUser = (name, email, password) => {
   return db.query(
-    'INSERT INTO artist (id, name, email, password, avatar_choice) VALUES(name, email, password, avatar_choice)'
+    `INSERT INTO artist (name, email, password)
+    VALUES ($1, $2, $3)
+    RETURNING *;`,
+    [name, email, password]
   )
     .then(data => {
-      return data.rows;
+      return data;
     })
     .catch((err) => {
       console.log(err.message);

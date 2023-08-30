@@ -81,7 +81,7 @@
       <% } else { %>
         <div class="container">
           <div class="row"></div>
-          <% for (let fav of favoritesData) { if (!fav.is_deleted) { %>
+          <% for (let item of favoritesData) { if (!item.is_deleted) { %>
 
             <div class="col 14 m4 s12">
               <%- include('partials/_card.ejs', {item}); %>

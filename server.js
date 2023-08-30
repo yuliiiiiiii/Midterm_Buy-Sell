@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
 
 //
 const productQueries = require('./db/queries/products');
@@ -12,6 +13,14 @@ const productQueries = require('./db/queries/products');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ["ILoveSecureThingsThey'reSoSecure"],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
 app.set('view engine', 'ejs');
 
@@ -36,7 +45,7 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
-const authRoutes = require('./routes/auth')
+const authRoutes = require('./routes/auth');
 const productsRoutes = require('./routes/products');
 const itemsRoutes = require('./routes/items');// const indexRoutes = require('./routes/index')
 

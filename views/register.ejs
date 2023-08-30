@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,8 @@
 <body>
   <h1>Register</h1>
   <form method="POST" action="/auth/register">
+    <label for="name">Name</label><br>
+    <input type="name" name="name" placeholder="Name"><br>
     <label for="email">Email</label><br>
     <input type="email" name="email" placeholder="email"><br>
     <label for="password">Password</label><br>
@@ -21,4 +24,5 @@
     <button type="submit">Register</button>
   </form>
 </body>
+
 </html>

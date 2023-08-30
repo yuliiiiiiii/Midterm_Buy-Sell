@@ -19,7 +19,7 @@
   <a href="/category/:id"><img src="**reference to image goes here**"></img></a>
 </div>
 
-<div class="items_container">
+<!-- <div class="items_container">
   Availiable Pieces:
   <div class=item>
     <a href="/"><img src="**reference to image goes here**"></img></a>.
@@ -28,7 +28,40 @@
     <a href="/message"><i class="fa-regular fa-message" style="color: #8d99ae;"></i></a>
     <div></div>
   </div>
+</div> -->
+
+
+<div class="container">
+  <div class="row"></div>
+  <% for (art of allArtData) { if (!art.is_deleted) { %>
+
+    <div class="col 14 m4 s12">
+      <div class="card">
+
+        <div class="card-image">
+          <img src="<%= art.link_to_pic %>" class="materialboxed">
+          <span class="card-title">
+            <%= art.name %>
+          </span>
+          <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
+        </div>
+
+        <div class="card-content">
+          <p>
+            <%= art.description %>
+          </p>
+          <p>
+            <%= (art.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %>
+          </p>
+          <p><a href="/auth/login">This is a link to the Indv item</a></p>
+        </div>
+
+      </div>
+    </div>
+  <% }} %>
+  </div>
 </div>
+
 </body>
 
 </html>

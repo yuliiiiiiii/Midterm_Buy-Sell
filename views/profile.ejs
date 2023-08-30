@@ -6,9 +6,9 @@
     <%= userData.name %>'s Profile
   </title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
@@ -39,66 +39,86 @@
     <%- include('partials/_header.ejs'); %>
   </header>
 
- <div class= "profile user-info">
 
-  <h1>Profile Page</h1>
   <div class="profile user-info">
     <h1>Profile Page</h1>
-    <div class="profile_top">
 
-      <ul class="collection">
-        <li class="collection-item avatar">
-          <img src="/public/img/User_Profile_icon.png" alt="avatar" class="circle">
-          <span class="title"><%= userData.name %></span>
-          <p><%= userData.email %></p>
-          <a href="/logout" class="secondary-content"><i class="fa-solid fa-right-from-bracket"></i></a>
-        </li>
-
-
-      <!-- <h3><i class="fa-solid fa-person-walking"></i></h3>
-      <h4><%= userData.name %></h4>
-      <h4><%= userData.email %></h4> -->
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card horizontal">
+            <!-- <h2 class="header"><%= userData.name %></h2> -->
+            <div class="card-image">
+              <img src="http://placekitten.com/g/200/300" alt="wheres my pic?">
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <h2>
+                  <%= userData.name %>
+                </h2>
+                <p>
+                  <%= userData.email %>
+                </p>
+              </div>
+              <div class="card-action">
+                <a href="auth/login"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
+  <div class="profile favorites">
+  <h4>My Favourites</h4>
 
-  <div class="profile favourites">
-    <h4>My Favourites</h4>
-    <div>
-      <!-- to be hidden if there are favourites -->
-      <p>You have no Favourites yet. 🤷 </p>
+    <!-- to be hidden if there are favourites -->
+    <% if (favoritesData.length < 1 || favoritesData==undefined) { %>
+      <h5>You have no Favourites yet. 🤷 </h5>
 
-      <!-- to be hidden if there are no favourites -->
-      <div class="row">
-        <div class="col s12 m6">
+      <!-- to be hidden if user has no products -->
+      <% } else { %>
+        <div class="container">
+          <div class="row"></div>
           <% for (let fav of favoritesData) { if (!fav.is_deleted) { %>
-            <div class="card">
-              <div class="card-image">
-                <img src="<%= fav.link_to_pic %>">
-                <span class="card-title"><%= fav.product_name %></span>
-                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="fa-regular fa-heart"></i></a>
-              </div>
-              <div class="card-content">
-                <p><%= fav.description %></p>
-                <p> <%= (fav.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %></p>
-                <p><a href="#">This is a link to the Indv item id:<%= fav.product_id %></a></p>
+
+            <div class="col 14 m4 s12">
+              <div class="card">
+
+                <div class="card-image">
+                  <img src="<%= fav.link_to_pic %>" class="materialboxed">
+                  <span class="card-title">
+                    <%= fav.name %>
+                  </span>
+                  <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
+                </div>
+
+                <div class="card-content">
+                  <p>
+                    <%= fav.description %>
+                  </p>
+                  <p>
+                    <%= (fav.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %>
+                  </p>
+                  <p><a href="/auth/login">This is a link to the Indv item</a></p>
+                </div>
+
               </div>
             </div>
           <% }} %>
+          </div>
         </div>
-      </div>
+      <% } %>
 
-    </div>
   </div>
 
-
-
   <div class="profile my-products">
-    <h4>My Art for Sale</h4>
-    <div>
-      <!-- to be hidden if the user is owner of any products -->
-      <% if (sellersProducts.length < 1 || sellersProducts == undefined) { %>
-            <h5>You have no art for sale yet. 🤷 </h5>
+  <h4>My Art for Sale</h4>
+
+    <!-- to be hidden if the user is owner of any products -->
+    <% if (sellersProducts.length < 1 || sellersProducts==undefined) { %>
+      <h5>You have no art for sale yet. 🤷 </h5>
 
       <!-- to be hidden if user has no products -->
       <% } else { %>
@@ -110,14 +130,20 @@
               <div class="card">
 
                 <div class="card-image">
-                  <img src="<%= product.link_to_pic %>">
-                  <span class="car-title"><%= product.name %></span>
+                  <img src="<%= product.link_to_pic %>" class="materialboxed">
+                  <span class="card-title">
+                    <%= product.name %>
+                  </span>
                   <a class="btn btn-floating halfway-fab"><i class="fa-solid fa-bars"></i></a>
                 </div>
 
                 <div class="card-content">
-                  <p><%= product.description %></p>
-                  <p><%= (product.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %></p>
+                  <p>
+                    <%= product.description %>
+                  </p>
+                  <p>
+                    <%= (product.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %>
+                  </p>
                   <p><a href="/auth/login">This is a link to the Indv item</a></p>
                 </div>
 
@@ -128,13 +154,20 @@
         </div>
       <% } %>
 
-
-    </div>
   </div>
 
   <div class="profile_bottom">
-    <a href="/add-item" class="waves-effect waves-light btn-large"><i class="material-icons right"><i class="fa-regular fa-image"></i></i>Add Art to Sell</a>
+    <a href="/add-item" class="waves-effect waves-light btn-large"><i class="material-icons right"><i
+          class="fa-regular fa-image"></i></i>Add Art to Sell</a>
   </div>
+
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      const gallery = document.querySelectorALL(".materialboxed");
+      M.Materialbox.init(gallery,{})
+    })
+  </script> -->
+
 </body>
 
 </html>

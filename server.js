@@ -6,6 +6,10 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
+//
+const productQueries = require('./db/queries/products');
+
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -34,6 +38,7 @@ const usersRoutes = require('./routes/users');
 const profileRoutes = require('./routes/profile');
 const authRoutes = require('./routes/auth')
 const productsRoutes = require('./routes/products');
+// const indexRoutes = require('./routes/index')
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -44,6 +49,7 @@ app.use('/users', usersRoutes);
 app.use('/auth', authRoutes)
 app.use('/profile', profileRoutes)
 app.use('/add-item', productsRoutes)
+// app.use('', indexRoutes)
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -51,7 +57,22 @@ app.use('/add-item', productsRoutes)
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  productQueries.getAllProducts()
+  .then((data) => {
+    const allArtData = data.rows
+    console.log("logging all art---------------------", allArtData)
+    return allArtData
+  })
+  .then(data => {
+    allArtData = data
+    templateVars = { allArtData }
+    return res.render('index', templateVars)
+  })
+  .catch(err => {
+    res
+    .status(500)
+    .json({ error: err.message });
+  })
 });
 
 app.listen(PORT, () => {

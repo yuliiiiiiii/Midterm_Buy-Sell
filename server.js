@@ -83,23 +83,5 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-// app.get('/item/:id', (req, res) => {
-//   // res.render('Indi_item_buyer');
-//   console.log('url')
-//   const product_id = req.params.id
-
-
-
-//   db
-//    .getProductbyProductId(product_id)
-//    .then( product => {
-//     //product is an object
-//     res.send( product )
-//    })
-//    .catch(error => {
-//     console.error(error);
-//     res.send(error)
-//    })
-// });
 
 

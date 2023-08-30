@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('../db/connection');
 const router = express.Router();
-const { Template } = require('ejs');
+// const { Template } = require('ejs');
 const favoriteQueries = require('../db/queries/favorites');
 
 router.post('/profile', (req, res) => {

@@ -19,6 +19,7 @@ const getProductbyProductId = function(id) {
   .then(res => {
     // console.log("+++++", res.rows[0]);
     return res.rows[0];
+    // returns an object
   })
   .catch(err => {
     console.log("-------", err.message);

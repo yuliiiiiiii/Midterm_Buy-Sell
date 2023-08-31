@@ -9,7 +9,9 @@ const { Template } = require('ejs');
 
 router.get('/', (req, res) => {
   if(!req.session.artist_id) {
-    res.redirect('/')
+    res.status(400);
+    res.send("Please log in to see your profile!");
+    // res.redirect('/')
   } else {
 
   Promise.all([
@@ -45,14 +47,12 @@ router.get('/', (req, res) => {
       return categoryData;
     }),
   ])
-
     .then(data => {
       userData = data[0];
       sellersProducts = data[1];
       favoritesData = data[2];
       categoryData = data[3]
       templateVars = { userData, sellersProducts, favoritesData , categoryData};
-      // console.log('promiseALLTHEDATA', data);
       return res.render('profile', templateVars);
     });
   }

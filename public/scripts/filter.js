@@ -1,11 +1,11 @@
+////file not used
 
-
-document.addEventListener('DOMContentLoaded', function(){
-  document.getElementById('filterByPortrait')
-  .addEventListener('click', function(){
-    location.reload()
-  })
-})
+// document.addEventListener('DOMContentLoaded', function(){
+//   document.getElementById('filterByPortrait')
+//   .addEventListener('click', function(){
+//     location.reload()
+//   })
+// })
 
 
 

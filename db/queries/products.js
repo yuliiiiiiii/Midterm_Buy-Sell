@@ -47,4 +47,21 @@ const filterProductByCategory = (id) => {
     });
 }
 
-module.exports = { getAllProducts, getProductsbySeller, getProductbyProductId, filterProductByCategory, filterProductByPrice };
+const deleteProduct = function(product_id) {
+  return db
+  .query(`
+  UPDATE product
+  SET is_deleted = true
+  WHERE id = ${product_id}
+  RETURNING *;
+  `)
+  .then(res => {
+    console.log("deleted product:", res.rows[0]);
+    return;
+  })
+  .catch (error => {
+    console.log("error", error.message);
+  });
+};
+
+module.exports = { getAllProducts, getProductsbySeller, getProductbyProductId, filterProductByCategory, filterProductByPrice, deleteProduct };

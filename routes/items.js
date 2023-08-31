@@ -122,5 +122,9 @@ router.post('/:id', (req, res) => {
     });
 });
 
+router.get('/:id/message', (req, res) => {
+  res.render('message');
+});
+
 module.exports = router;
 // each rount file needs to export the router, and import to server.js!

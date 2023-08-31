@@ -18,8 +18,8 @@
 
     <p><a href="/items/<%= item.id %>">Click for Details</a><br></p>
 
-    <% for (let cat of categoryData) { %>
-      <span class="new badge" data-badge-caption="<%= cat.name%>"></span>
+    <% for (let cat of item.category_names) { %>
+      <span class="new badge" data-badge-caption="<%= cat%>"></span>
       <% } %>
         <hr>
 

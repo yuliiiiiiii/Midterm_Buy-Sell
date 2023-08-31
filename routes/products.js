@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
     .then((data) => {
       item_id = data[0].id
       console.log("new item id now", data[0].id)
-      res.redirect('/items/:item_id') /////syntax to add a variable
+      res.redirect(`/items/${item_id}`)
     })
       .catch((e) => {
       console.error(e);

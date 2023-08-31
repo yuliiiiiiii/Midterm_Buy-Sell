@@ -74,31 +74,29 @@ app.get('/', (req, res) => {
   let dbquery;
   const { min, max, category } = req.query;
   if (min && max) {
-    dbquery = productQueries.filterProductByPrice((min * 100), (max * 100));
+    dbquery = productQueries.filterProductByPriceWithCategoryName((min * 100), (max * 100));
   } else if (category) {
-    dbquery = productQueries.filterProductByCategory(category);
+    dbquery = productQueries.filterProductByCategoryWithCategoryName(category);
   } else {
-    dbquery = productQueries.getAllProducts();
+    dbquery = productQueries.getAllProductsWithCategoryName();
   }
 
   Promise.all([
     dbquery.then((allArtData) => {
-      console.log('WHAT DOES ALL ART DATA LOOK LIKE AGAIN', allArtData);
       return allArtData;
     }),
-    categoryQueries.getCategoriesByProduct(6) // needs to dynamic from product <-- this will need to be on more than the profile page???
-      .then(data => {
-        const categoryData = data;
-        console.log("---- category data", categoryData);
-        return categoryData;
-      }),
+    // categoryQueries.getCategoriesByProduct(6) // needs to dynamic from product <-- this will need to be on more than the profile page???
+    //   .then(data => {
+    //     const categoryData = data;
+    //     console.log("---- category data", categoryData);
+    //     return categoryData;
+    //   }),
   ])
 
     .then(data => {
       allArtData = data[0];
       categoryData = data[1];
-      const templateVars = { allArtData, categoryData };
-      console.log("testing templateVars", templateVars);
+      const templateVars = { allArtData, categoryData }
       res.render('index', templateVars);
     })
     .catch(err => {

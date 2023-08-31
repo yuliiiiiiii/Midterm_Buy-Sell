@@ -5,6 +5,15 @@ const getAllProducts = () => {
   .then(data => data.rows)
 }
 
+const getAllProductsWithCategoryName = () => {
+  return db.query (`SELECT p.*, array_agg(c.name) AS category_names
+                  FROM product p
+                  JOIN product_category pc ON p.id = pc.product
+                  JOIN category c ON pc.category = c.id
+                  GROUP BY p.id;`)
+  .then(data => data.rows)
+}
+
 const getProductsbySeller = (id) => {
   return db.query(`SELECT *
                   FROM product
@@ -13,6 +22,7 @@ const getProductsbySeller = (id) => {
       return data.rows;
     });
 };
+
 
 const getProductbyProductId = function(id) {
   return db
@@ -36,6 +46,16 @@ const filterProductByPrice = (min, max) => {
     });
 }
 
+const filterProductByPriceWithCategoryName = (min, max) => {
+  return db.query (`SELECT p.*, array_agg(c.name) AS category_names
+                  FROM product p
+                  JOIN product_category pc ON p.id = pc.product
+                  JOIN category c ON pc.category = c.id
+                  WHERE price_in_cents BETWEEN ${min} AND ${max}
+                  GROUP BY p.id;`)
+  .then(data => data.rows)
+}
+
 const filterProductByCategory = (id) => {
   return db.query(`SELECT *
                     FROM product
@@ -45,6 +65,16 @@ const filterProductByCategory = (id) => {
     .then(data => {
       return data.rows;
     });
+}
+
+const filterProductByCategoryWithCategoryName = (id) => {
+  return db.query (`SELECT p.*, array_agg(c.name) AS category_names
+                  FROM product p
+                  JOIN product_category pc ON p.id = pc.product
+                  JOIN category c ON pc.category = c.id
+                  WHERE pc.category = ${id}
+                  GROUP BY p.id;`)
+  .then(data => data.rows)
 }
 
 const deleteProduct = function(product_id) {
@@ -64,4 +94,12 @@ const deleteProduct = function(product_id) {
   });
 };
 
-module.exports = { getAllProducts, getProductsbySeller, getProductbyProductId, filterProductByCategory, filterProductByPrice, deleteProduct };
+module.exports = { getAllProducts,
+                  getAllProductsWithCategoryName,
+                  getProductsbySeller,
+                  getProductbyProductId,
+                  filterProductByCategory,
+                  filterProductByCategoryWithCategoryName,
+                  filterProductByPrice,
+                  filterProductByPriceWithCategoryName,
+                  deleteProduct };

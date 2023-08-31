@@ -10,9 +10,12 @@ router.get('/:id', (req, res) => {
   const product_id = req.params.id
   // req.params is an object, like {"id":"1"}
   // so need req.params.id to get the integer 1
-  const userId = 1;
-  // not dynamic!!!!!
-  // const userId = req.session.user_id => need to set <req.session.user_id = artist.id> at log in
+  // const userId = 1;
+  const userId = req.session.artist_id
+
+  // if(!userId) {
+    // return res.send({ error: "error" });
+  // }
 
   db
    productQueries.getProductbyProductId(product_id)
@@ -37,7 +40,8 @@ router.get('/:id', (req, res) => {
       name: product.name,
       description: product.description,
       price: `$${product.price_in_cents / 100}`,
-      sold: product.sold
+      sold: product.sold,
+      item: product
       // still need to add more variable for header partial, and find way to hide sold
     };
     res.render("Indi_item_buyer", templateVars);
@@ -53,7 +57,8 @@ router.get('/:id', (req, res) => {
       description: product.description,
       price:`$${product.price_in_cents / 100}`,
       sold: product.sold,
-      id: product.id
+      id: product.id, //in order to make the delete post request!
+      item: product
       // still need to add more variable for header partial, and find way to change sold status
     };
     res.render("Indi_item_seller", templateVars);
@@ -68,7 +73,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/:id/delete', (req,res) => {
   const product_id = req.params.id;
-  const userId = 1;
+  // const userId = 1;
   //const userId = req.session.userId;
   db
   productQueries.deleteProduct(product_id)

@@ -13,9 +13,9 @@ router.get('/:id', (req, res) => {
   // const userId = 1;
   const userId = req.session.artist_id
 
-  //  if(!userId) {
-  //    return res.send({ error: "Please log in" });
-  //  };
+    if(!userId) {
+      return res.send({ error: "Please log in" });
+    };
   // Need to check if user is logged in!!!!
 
   db
@@ -88,6 +88,9 @@ router.post('/:id/delete', (req,res) => {
     res.send(error);
    });
  });
+
+
+
 
 module.exports = router;
 // each rount file needs to export the router, and import to server.js!

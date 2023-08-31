@@ -83,7 +83,7 @@
           <div class="row"></div>
           <% for (let item of favoritesData) { if (!item.is_deleted) { %>
 
-            <div class="col 14 m4 s12">
+            <div class="col m4 s12">
               <%- include('partials/_card.ejs', {item}); %>
             </div>
           <% }} %>
@@ -128,13 +128,6 @@
     </div>
   </div>
 
-
-  <!-- <script>
-    document.addEventListener("DOMContentLoaded", function(){
-      const gallery = document.querySelectorALL(".materialboxed");
-      M.Materialbox.init(gallery,{})
-    })
-  </script> -->
 
 </body>
 

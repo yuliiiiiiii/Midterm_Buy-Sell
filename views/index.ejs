@@ -20,8 +20,21 @@
 <div class="filter show-on-large hide-on-med-and-down">
   HORIZONTAL ROW OF CIRCLE CATEGORIES GOES HERE
   <div class="container">
-    <img src="http://placekitten.com/g/60/60" alt="landscape">
-    <div class="centered">Landscapes</div>
+    <form method="GET" action="/">
+      <button type="submit" id="filterByPortrait">
+        <img src="http://placekitten.com/60/60" alt="portrait">
+        <div class="centered">Portraits</div>
+      </button>
+      <button type="submit" id="filterByLandscape">
+        <img src="http://placekitten.com/59/59" alt="landscape">
+        <div class="centered">Landscapes</div>
+      </button>
+      <button type="submit" id="filterByAnimals">
+        <img src="http://placekitten.com/65/61" alt="animals">
+        <div class="centered">Animals</div>
+      </button>
+
+    </form>
   </div>
 </div>
 
@@ -30,19 +43,19 @@
 </div>
 
 <div class="container">
-<form method="GET" action="/">
   <div class="row">
-    <div class="input-field col s6">
-      <input name="min" id="min" type="number" class="validate">
-      <label for="Min">$ Min</label>
-    </div>
-    <div class="input-field col s6">
-      <input name="max" id="max" type="number" class="validate">
-      <label for="max">$ Max</label>
-    </div>
-    <button type="submit" id="filterByPriceButton">Filter Data</button>
-  </div>
-</form>
+    Filter By Price:
+      <form method="GET" action="/">
+          <div class="input-field col s6">
+            <input name="min" id="min" type="number" class="validate">
+            <label for="Min">$ Min</label>
+          </div>
+          <div class="input-field col s6">
+            <input name="max" id="max" type="number" class="validate">
+            <label for="max">$ Max</label>
+          </div>
+          <button type="submit" id="filterByPriceButton">Filter Data</button>
+      </form>
 </div>
 
 <!-- <div class="items_container">

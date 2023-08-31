@@ -80,6 +80,7 @@ if (min && max) {
 }
 Promise.all([
   dbquery.then((allArtData) => {
+    console.log('WHAT DOES ALL ART DATA LOOK LIKE AGAIN', allArtData)
     return allArtData
   }),
   categoryQueries.getCategoriesByProduct(6) // needs to dynamic from product <-- this will need to be on more than the profile page???

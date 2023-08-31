@@ -8,6 +8,9 @@ const categoryQueries = require('../db/queries/categories')
 const { Template } = require('ejs');
 
 router.get('/', (req, res) => {
+  if(!req.session.artist_id) {
+    res.redirect('/')
+  } else {
 
   Promise.all([
 
@@ -52,6 +55,7 @@ router.get('/', (req, res) => {
       // console.log('promiseALLTHEDATA', data);
       return res.render('profile', templateVars);
     });
+  }
 });
 
 module.exports = router;

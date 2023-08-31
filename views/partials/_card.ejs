@@ -1,7 +1,7 @@
 <div class="card">
 
   <div class="card-image">
-    <img src="<%= item.link_to_pic %>" class="materialboxed">
+    <img src="<%= item.link_to_pic %>" class="responsive-img materialboxed">
     <span class="card-title" style= "color:black; font-weight: bold";>
       <%= item.name %>
     </span>
@@ -27,3 +27,10 @@
   </div>
 
 </div>
+
+  <script>
+    // document.addEventListener("DOMContentLoaded", function(){
+      const gallery = document.querySelectorALL('.materialboxed');
+      M.Materialbox.init(gallery,{})
+
+  </script>

@@ -20,17 +20,14 @@
 
 <body>
   <%- include('partials/_header') %>
-
-  <img src="<%= picture %>" alt="picture">
-  <p class="name"><%= name %></p>
-  <p class="description"><%= description %></p>
-  <p class="price"><%= price %></p>
+  <%- include('partials/_card.ejs', {item}); %>
 
 <form method="post" action="/items/<%= id %>/delete">
+  <!-- use <%= id%> to post to the returned product id! -->
   <button type="submit">delete</button>
 </form>
 
-<h3>Sold: <%= sold %></h3>
+<!-- <h3>Sold: <%= sold %></h3> -->
 <!-- need to find way to be able to change sold or not -->
 
 </body>

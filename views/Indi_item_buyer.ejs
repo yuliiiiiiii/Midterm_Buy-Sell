@@ -18,11 +18,7 @@
 
 <body>
   <%- include('partials/_header') %>
-  <img src="<%= picture %>" alt="picture">
-  <p class="name"><%= name %></p>
-  <p class="description"><%= description %></p>
-  <p class="price"><%= price %></p>
-  <p class="sold">Sold: <%= sold %></p>
+  <%- include('partials/_card.ejs', {item}); %>
 
   <form method="post" action="/profile">
   <button type="submit">Like</button>

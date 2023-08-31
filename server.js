@@ -56,9 +56,9 @@ const itemsRoutes = require('./routes/items');// const indexRoutes = require('./
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/auth', authRoutes)
-app.use('/profile', profileRoutes)
-app.use('/add-item', productsRoutes)
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
+app.use('/add-item', productsRoutes);
 app.use('/items', itemsRoutes);
 
 // app.use('/', indexRoutes)
@@ -71,37 +71,41 @@ app.use('/items', itemsRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  let dbquery
-  const {min, max} = req.query
-if (min && max) {
-  dbquery = productQueries.filterProductByPrice((min*100), (max*100))
-} else {
-  dbquery = productQueries.getAllProducts()
-}
-Promise.all([
-  dbquery.then((allArtData) => {
-    console.log('WHAT DOES ALL ART DATA LOOK LIKE AGAIN', allArtData)
-    return allArtData
-  }),
-  categoryQueries.getCategoriesByProduct(6) // needs to dynamic from product <-- this will need to be on more than the profile page???
-    .then(data => {
-      const categoryData = data;
-      console.log("---- category data", categoryData);
-      return categoryData
+  let dbquery;
+  const { min, max, category } = req.query;
+  if (min && max) {
+    dbquery = productQueries.filterProductByPrice((min * 100), (max * 100));
+  } else if (category) {
+    dbquery = productQueries.filterProductByCategory(category);
+  } else {
+    dbquery = productQueries.getAllProducts();
+  }
+
+  Promise.all([
+    dbquery.then((allArtData) => {
+      console.log('WHAT DOES ALL ART DATA LOOK LIKE AGAIN', allArtData);
+      return allArtData;
     }),
+    categoryQueries.getCategoriesByProduct(6) // needs to dynamic from product <-- this will need to be on more than the profile page???
+      .then(data => {
+        const categoryData = data;
+        console.log("---- category data", categoryData);
+        return categoryData;
+      }),
   ])
-  .then (data => {
-    allArtData = data[0];
-    categoryData = data[1]
-    const templateVars = { allArtData, categoryData }
-    console.log("testing templateVars", templateVars)
-    res.render('index', templateVars)
-  })
-  .catch(err => {
-    res
-    .status(500)
-    .json({ error: err.message });
-  })
+
+    .then(data => {
+      allArtData = data[0];
+      categoryData = data[1];
+      const templateVars = { allArtData, categoryData };
+      console.log("testing templateVars", templateVars);
+      res.render('index', templateVars);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 
 app.listen(PORT, () => {

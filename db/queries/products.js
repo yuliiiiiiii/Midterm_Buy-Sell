@@ -41,7 +41,7 @@ const filterProductByCategory = (id) => {
                     FROM product
                     JOIN product_category
                     ON product_category.product = product.id
-                    WHERE product_category.id = ${id};`)
+                    WHERE product_category.category = ${id};`)
     .then(data => {
       return data.rows;
     });

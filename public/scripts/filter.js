@@ -1,7 +1,17 @@
-////////////not used
 
-// $(document).ready(function() {
-//   $("#filterButton").click(function() {
+
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('filterByPortrait')
+  .addEventListener('click', function(){
+    location.reload()
+  })
+})
+
+
+
+
+
+// $("#filterByPortrait").click(function() {
 //       // Make an AJAX request to fetch updated data
 //       $.ajax({
 //           url: "/",

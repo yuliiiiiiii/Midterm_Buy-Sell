@@ -6,8 +6,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%- include('partials/_head.ejs'); %>
-  <!-- <script src="/public/scripts/filter.js"></script> -->
-  <script src="/vendor/jquery-3.0.0.js"></script>
+    <!-- <script src="/public/scripts/filter.js"></script> -->
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script src="/public/scripts/filter.js"></script>
 
 </head>
 
@@ -17,48 +18,98 @@
 
 <body>
 
-<div class="filter show-on-large hide-on-med-and-down">
-  HORIZONTAL ROW OF CIRCLE CATEGORIES GOES HERE
-  <div class="container">
-    <form method="GET" action="/">
-      <button type="submit" id="filterByPortrait">
-        <img src="http://placekitten.com/60/60" alt="portrait">
-        <div class="centered">Portraits</div>
-      </button>
-      <button type="submit" id="filterByLandscape">
-        <img src="http://placekitten.com/59/59" alt="landscape">
-        <div class="centered">Landscapes</div>
-      </button>
-      <button type="submit" id="filterByAnimals">
-        <img src="http://placekitten.com/65/61" alt="animals">
-        <div class="centered">Animals</div>
-      </button>
+  <div class="filter show-on-large hide-on-med-and-down">
+    HORIZONTAL ROW OF CIRCLE CATEGORIES GOES HERE
+    <div class="container">
 
-    </form>
-  </div>
-</div>
-
-<div class="filter show-on-medium-and-down hide-on-large-only">
-  HAMBURGER MENU OF CATEGORIES GOES HERE
-</div>
-
-<div class="container">
-  <div class="row">
-    Filter By Price:
       <form method="GET" action="/">
-          <div class="input-field col s6">
-            <input name="min" id="min" type="number" class="validate">
-            <label for="Min">$ Min</label>
-          </div>
-          <div class="input-field col s6">
-            <input name="max" id="max" type="number" class="validate">
-            <label for="max">$ Max</label>
-          </div>
-          <button type="submit" id="filterByPriceButton">Filter Data</button>
+        <input name="category" type="hidden" value="1">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="portrait">
+          <div class="centered">Portraits</div>
+        </button>
       </form>
-</div>
 
-<!-- <div class="items_container">
+      <form method="GET" action="/">
+        <input name="category" type="hidden" value="2">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="landscape">
+          <div class="centered">Landscape</div>
+        </button>
+      </form>
+
+      <form method="GET" action="/">
+        <input name="category" type="hidden" value="3">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="still life">
+          <div class="centered">Still Life</div>
+        </button>
+      </form>
+
+      <form method="GET" action="/">
+        <input name="category" type="hidden" value="4">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="people">
+          <div class="centered">People</div>
+        </button>
+      </form>
+
+      <form method="GET" action="/">
+        <input name="category" type="hidden" value="5">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="animals">
+          <div class="centered">Animals</div>
+        </button>
+      </form>
+
+      <form method="GET" action="/">
+      <input name="category" type="hidden" value="7">
+      <button type="submit">
+        <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="Abstract">
+        <div class="centered">Abstract</div>
+      </button>
+    </form>
+
+    <form method="GET" action="/">
+        <input name="category" type="hidden" value="8">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="Paintings">
+          <div class="centered">Paintings</div>
+        </button>
+      </form>
+
+      <form method="GET" action="/">
+        <input name="category" type="hidden" value="9">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="sculpture">
+          <div class="centered">Sculpture</div>
+        </button>
+      </form>
+
+  </div>
+  </div>
+
+  <div class="filter show-on-medium-and-down hide-on-large-only">
+    HAMBURGER MENU OF CATEGORIES GOES HERE
+  </div>
+
+  <div class="container">
+    <div class="row">
+      Filter By Price:
+      <form method="GET" action="/">
+        <div class="input-field col s6">
+          <input name="min" id="min" type="number" class="validate">
+          <label for="Min">$ Min</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="max" id="max" type="number" class="validate">
+          <label for="max">$ Max</label>
+        </div>
+        <button type="submit" id="filterByPriceButton">Filter Data</button>
+      </form>
+    </div>
+
+    <!-- <div class="items_container">
   Availiable Pieces:
   <div class=item>
     <a href="/"><img src="**reference to image goes here**"></img></a>.
@@ -70,17 +121,17 @@
 </div> -->
 
 
-<div class="container allTheCards">
-  <div class="row"></div>
-  <% for (item of allArtData) { if (!item.is_deleted) { %>
+    <div class="container allTheCards">
+      <div class="row"></div>
+      <% for (item of allArtData) { if (!item.is_deleted) { %>
 
-    <div class="col 14 m4 s12">
-      <%- include('partials/_card.ejs', {item}); %>
+        <div class="col 14 m4 s12">
+          <%- include('partials/_card.ejs', {item}); %>
 
+        </div>
+        <% }} %>
     </div>
-  <% }} %>
   </div>
-</div>
 
 </body>
 

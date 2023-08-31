@@ -33,10 +33,10 @@ router.get('/', (req, res) => {
         return sellersProducts;
       }),
 
-    favoriteQueries.getFavoritesOfSeller(req.session.artist_id)
+    favoriteQueries.getFavoritesOfUser(req.session.artist_id)
       .then(data => {
         const favoritesData = data;
-
+        console.log("------favoriteData:", favoritesData);
         return favoritesData;
       }),
 
@@ -51,6 +51,7 @@ router.get('/', (req, res) => {
       userData = data[0];
       sellersProducts = data[1];
       favoritesData = data[2];
+      console.log('this is the favourites data',favoritesData )
       categoryData = data[3]
       templateVars = { userData, sellersProducts, favoritesData , categoryData};
       return res.render('profile', templateVars);

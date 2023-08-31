@@ -3,7 +3,7 @@
   <div class="card-image">
     <img src="<%= item.link_to_pic %>" class="materialboxed">
     <span class="card-title" style="color:black; font-weight: bold" ;>
-      <%= item.name %>
+      <%= item.product_name %>
     </span>
     <% if (item.sold) { %> <a class="btn btn-floating btn-large red halfway-fab">sold</a>
       <% } %>
@@ -16,7 +16,7 @@
           <%= (item.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %><br>
     </p>
 
-    <p><a href="/items/<%= item.id %>">Click for Details</a><br></p>
+    <p><a href="/items/<%= item.product_id %>">Click for Details</a><br></p>
 
     <% for (let cat of item.category_names) { %>
       <span class="new badge" data-badge-caption="<%= cat%>"></span>

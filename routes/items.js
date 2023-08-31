@@ -1,9 +1,11 @@
 const express = require('express');
 const db = require('../db/connection');
 const router = express.Router();
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 // const { Template } = require('ejs');
 const productQueries = require('../db/queries/products');
+const favoriteQueries = require('../db/queries/favorites');
+
 
 router.get('/:id', (req, res) => {
   // the actual url will be /items/:id, see server.js
@@ -43,8 +45,9 @@ router.get('/:id', (req, res) => {
           // price: `$${product.price_in_cents / 100}`,
           // sold: product.sold,
           id: product.id,
-          item: product
-          // still need to add more variable for header partial, and find way to hide sold
+          item: product,
+          favorite: favoriteQueries.getFavoriteByProductAndUserId(product.id, userId)
+          // It shows liked icon on every page so it does not work
         };
         res.render("Indi_item_buyer", templateVars);
         return;
@@ -60,8 +63,8 @@ router.get('/:id', (req, res) => {
           // price:`$${product.price_in_cents / 100}`,
           // sold: product.sold,
           id: product.id, //in order to make the delete post request!
-          item: product
-          // still need to add more variable for header partial, and find way to change sold status
+          item: product,
+          favorite: false
         };
         res.render("Indi_item_seller", templateVars);
         return;
@@ -76,7 +79,12 @@ router.get('/:id', (req, res) => {
 router.post('/:id/delete', (req, res) => {
   const product_id = req.params.id;
   // const userId = 1;
-  //const userId = req.session.userId;
+  const userId = req.session.artist_id;
+
+  if (!userId) {
+    return res.send({ error: "Please log in" });
+  };
+
   db
   productQueries.deleteProduct(product_id)
     .then(() => {
@@ -89,14 +97,20 @@ router.post('/:id/delete', (req, res) => {
     });
 });
 
-router.post('/:id', (req, res) => {
+router.post('/:id/sold', (req, res) => {
   const product_id = req.params.id;
   //  console.log("product_id:", product_id);
+  const userId = req.session.artist_id;
+
+  if (!userId) {
+    return res.send({ error: "Please log in" });
+  };
+
   db
   productQueries.getProductbyProductId(product_id)
     .then(product => {
-      if (!product.sold) {
 
+      if (!product.sold) {
         productQueries.changeToSoldByProductId(product.id)
           .then(() => {
             console.log("Product marked Sold!");
@@ -106,9 +120,7 @@ router.post('/:id', (req, res) => {
             console.error(error);
             res.send(error);
           });
-      };
-      if (product.sold) {
-
+      } else {
         productQueries.changeToNot_SoldByProductId(product.id)
           .then(() => {
             console.log("Product Not Sold!");
@@ -119,6 +131,27 @@ router.post('/:id', (req, res) => {
             res.send(error);
           });
       };
+    });
+});
+
+router.post('/:id/like', (req, res) => {
+  const product_id = req.params.id;
+  //  console.log("product_id:", product_id);
+  const userId = req.session.artist_id;
+
+  if (!userId) {
+    return res.send({ error: "Please log in" });
+  };
+
+  db
+  favoriteQueries.addFavorite(product_id, userId)
+    .then(favorite => {
+      console.log("Newly added favorite:", favorite);
+      res.redirect(`/items/${favorite.product_id}`);
+    })
+    .catch(error => {
+      console.error(error);
+      res.send(error);
     });
 });
 

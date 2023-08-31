@@ -3,14 +3,17 @@
 
     <div class="card">
 
-      <div class="card-image">
-        <img src="<%= item.link_to_pic %>" class="responsive-img materialboxed">
-        <span class="card-title" style="color:black; font-weight: bold" ;>
-          <%= item.name %>
-        </span>
-        <% if (item.sold) { %> <a class="btn btn-floating btn-large red halfway-fab">sold</a>
-          <% } %>
-      </div>
+  <div class="card-image">
+    <img src="<%= item.link_to_pic %>" class="responsive-img materialboxed">
+    <span class="card-title" style="color:black; font-weight: bold" ;>
+      <%= item.name %>
+    </span>
+    <% if (item.sold) { %> <a class="btn btn-floating btn-large red halfway-fab">sold</a>
+      <% } %>
+
+    <% if (favorite) { %> <a class="btn btn-floating btn-large red halfway-fab">Liked</a>
+    <% } %>
+  </div>
 
       <div class="card-content">
         <p>

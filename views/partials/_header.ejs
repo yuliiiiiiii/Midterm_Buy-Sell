@@ -2,15 +2,15 @@
   <div class="nav-wrapper">
     <!-- <a href="/"><img class="brand-logo" src="/img/logo.png"></a> -->
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <% if (!'req.session') { %>
-        <li><a href="/auth/register">Register</a></li>
-        <li><a href="/auth/login">Login</a></li>
+      <% if (typeof artist_id == 'undefined' || !artist_id) { %>
+        <li><a class="waves-effect waves-light btn" href="/auth/register">Register</a></li>
+        <li><a class="waves-effect waves-light btn" href="/auth/login">Login</a></li>
       <% } else {%>
         <li><form method="POST" action="/auth/logout">
-          <button type="submit">Logout</button>
+          <button class="waves-effect waves-light btn" type="submit">Logout</button>
         </form></li>
-        <li><a href="/add-item">Sell your item</a></li>
-        <li><a href="/profile">Profile</a></li>
+        <li><a class="waves-effect waves-light btn" href="/add-item">Sell your item</a></li>
+        <li><a class="waves-effect waves-light btn" href="/profile">Profile</a></li>
       <% } %>
     </ul>
   </div>

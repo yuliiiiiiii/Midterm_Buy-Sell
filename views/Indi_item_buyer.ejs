@@ -8,17 +8,18 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <!-- <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" /> -->
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
-  <!-- <%- include('partials/_head.ejs'); %> -->
+  <%- include('partials/_head.ejs'); %>
 </head>
 
 <body>
   <%- include('partials/_header') %>
-  <%- include('partials/_card.ejs', {item}); %>
+  <%- include('partials/_card_for_item_page.ejs', {item}); %>
+
 
   <form method="post" action="/profile">
   <button type="submit">Like</button>

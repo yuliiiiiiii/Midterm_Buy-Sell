@@ -5,7 +5,9 @@ const usersQuery = require('../db/queries/users.js');
 
 //registration
 router.get('/register', (req, res) => {
-  res.render('register');
+  console.log(req)
+  res.render('register', {artist_id: req.session && req.session.artist_id});
+
 });
 
 router.post("/register", (req, res) => {
@@ -42,8 +44,8 @@ router.post("/register", (req, res) => {
 
 //login
 router.get("/login", (req, res) => {
-
-  res.render('login');
+  console.log(req.session && req.session.artist_id)
+  res.render('login', {artist_id: req.session && req.session.artist_id});
 });
 
 const login = function(email, password) {
@@ -67,6 +69,8 @@ router.post('/login', (req, res) => {
       }
       req.session.artist_id = artist.rows[0].id;
       //res.send({ user: { name: artist.rows[0].name, email: artist.rows[0].email, id: artist.rows[0].id } });
+      req.temp = "temp"
+      console.log(req.session && req.session.artist_id)
       res.redirect("/");
     })
     .catch(e => res.send(e));

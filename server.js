@@ -60,6 +60,7 @@ app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/add-item', productsRoutes);
 app.use('/items', itemsRoutes);
+//app.use('/items')
 
 // app.use('/', indexRoutes)
 
@@ -96,7 +97,8 @@ app.get('/', (req, res) => {
     .then(data => {
       allArtData = data[0];
       categoryData = data[1];
-      const templateVars = { allArtData, categoryData }
+      const templateVars = { allArtData, categoryData, artist_id: req.session && req.session.artist_id };
+      console.log("testing templateVars", templateVars);
       res.render('index', templateVars);
     })
     .catch(err => {

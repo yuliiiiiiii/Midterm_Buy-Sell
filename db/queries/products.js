@@ -94,6 +94,40 @@ const deleteProduct = function(product_id) {
   });
 };
 
+const changeToSoldByProductId = function(product_id) {
+return db
+.query(`
+UPDATE product
+SET sold = true
+WHERE id = ${product_id}
+RETURNING *;
+`)
+.then(res => {
+  console.log("Sold product:", res.rows[0]);
+  return;
+})
+.catch (error => {
+  console.log("error", error.message);
+});
+};
+
+const changeToNot_SoldByProductId = function(product_id) {
+  return db
+  .query(`
+  UPDATE product
+  SET sold = false
+  WHERE id = ${product_id}
+  RETURNING *;
+  `)
+  .then(res => {
+    console.log("Not Sold product:", res.rows[0]);
+    return;
+  })
+  .catch (error => {
+    console.log("error", error.message);
+  });
+};
+
 module.exports = { getAllProducts,
                   getAllProductsWithCategoryName,
                   getProductsbySeller,
@@ -102,4 +136,4 @@ module.exports = { getAllProducts,
                   filterProductByCategoryWithCategoryName,
                   filterProductByPrice,
                   filterProductByPriceWithCategoryName,
-                  deleteProduct };
+                  deleteProduct, changeToSoldByProductId, changeToNot_SoldByProductId };

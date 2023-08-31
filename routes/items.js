@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../db/connection');
 const router = express.Router();
+const bcrypt = require("bcrypt");
 // const { Template } = require('ejs');
 const productQueries = require('../db/queries/products');
 
@@ -51,7 +52,8 @@ router.get('/:id', (req, res) => {
       name: product.name,
       description: product.description,
       price:`$${product.price_in_cents / 100}`,
-      sold: product.sold
+      sold: product.sold,
+      id: product.id
       // still need to add more variable for header partial, and find way to change sold status
     };
     res.render("Indi_item_seller", templateVars);
@@ -64,10 +66,21 @@ router.get('/:id', (req, res) => {
    })
 });
 
-// router.post('/item_buyer/:id/delete', (req,res) => {
-//   // need to write query to change is_deleted column in product into true
-
-// })
+router.post('/:id/delete', (req,res) => {
+  const product_id = req.params.id;
+  const userId = 1;
+  //const userId = req.session.userId;
+  db
+  productQueries.deleteProduct(product_id)
+   .then(() => {
+    console.log("Product deleted!");
+    res.redirect('/profile');
+   })
+   .catch(error => {
+    console.error(error);
+    res.send(error);
+   });
+ });
 
 module.exports = router;
 // each rount file needs to export the router, and import to server.js!

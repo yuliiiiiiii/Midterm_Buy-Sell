@@ -19,11 +19,12 @@
 
 <body>
   <%- include('partials/_header') %>
+  <div class="container">
     <%- include('partials/_card_for_item_page.ejs', {item}); %>
 
 
   <form method="post" action="/items/<%= id %>/like">
-  <button type="submit">Like</button>
+  <button class="waves-effect waves-light btn" type="submit">Like</button>
   </form>
 
       <div class="row">
@@ -33,12 +34,13 @@
               <i class="material-icons prefix">mode_edit</i>
               <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
               <label for="icon_prefix2">Write message here...</label>
-              <button type="submit">Send Message</button>
+              <button class="waves-effect waves-light btn" type="submit">Send Message</button>
             </div>
           </div>
         </form>
       </div>
 
+    </div>
 </body>
 
 </html>

@@ -20,6 +20,7 @@
 
 <body>
   <%- include('partials/_header') %>
+  <div class="container">
   <%- include('partials/_card_for_item_page.ejs', {item}); %>
 
 <form method="post" action="/items/<%= id %>/delete">
@@ -36,7 +37,7 @@
   <button typt="submit" class="waves-effect waves-light btn">Change to Not Sold</button>
 </form>
 <% } %>
-
+</div>
 </body>
 
 </html>

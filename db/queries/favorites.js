@@ -1,6 +1,6 @@
 const db = require('../connection');
 
-const getFavoritesOfSeller = (id) => {
+const getFavoritesOfUser  = (id) => {
   return db.query(`SELECT *, product.name as product_name, artist.name as artist_name
                     FROM favorite
                     JOIN product
@@ -14,10 +14,10 @@ const getFavoritesOfSeller = (id) => {
 };
 
 //likedItem - An object containing all of the product details
-const addFavorite = function(product) {
+const addFavorite = function(product_id, artist_id) {
   return db
   .query(`INSERT INTO favorite(product_id, artist_id)
-  VALUES('${product.id}', '3') RETURNING *;`)
+  VALUES($1, $2) RETURNING *;`, [product_id, artist_id])
   // artist_id is not dynamic, 'artistId'as second parameter
   .then(res => {
      return res.rows[0];
@@ -27,4 +27,20 @@ const addFavorite = function(product) {
   });
 };
 
-module.exports = { getFavoritesOfSeller, addFavorite };
+const getFavoriteByProductAndUserId = function(product_id, userId) {
+  return db
+  .query(`
+  SELECT * FROM favorite
+  WHERE product_id = ${product_id} AND artist_id = ${userId}
+  `)
+  .then(res => {
+    if (!res.rows[0]) {
+      return false;
+    }
+    if(res.rows[0]) {
+      return true;
+    }
+  })
+}
+
+module.exports = { getFavoritesOfUser , addFavorite, getFavoriteByProductAndUserId };

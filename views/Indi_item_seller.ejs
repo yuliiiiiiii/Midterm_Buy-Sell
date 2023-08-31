@@ -28,11 +28,11 @@
 </form>
 
 <% if(!item.sold) {%>
-<form method="post" action="/items/<%= id %>">
+<form method="post" action="/items/<%= id %>/sold">
   <button typt="submit" class="waves-effect waves-light btn">Change to Sold</button>
 </form>
 <% } else { %>
-<form method="post" action="/items/<%= id %>">
+<form method="post" action="/items/<%= id %>/sold">
   <button typt="submit" class="waves-effect waves-light btn">Change to Not Sold</button>
 </form>
 <% } %>

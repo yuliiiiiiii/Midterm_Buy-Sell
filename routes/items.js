@@ -89,8 +89,20 @@ router.post('/:id/delete', (req,res) => {
    });
  });
 
-
-
+ router.post('/:id', (req, res) => {
+   const product_id = req.params.id;
+  //  console.log("product_id:", product_id);
+   db
+   productQueries.changeToSoldByProductId(product_id)
+   .then(() => {
+    console.log("Product marked Sold!");
+    res.redirect(`/items/${product_id}`);
+   })
+   .catch(error => {
+    console.error(error);
+    res.send(error);
+   });
+ });
 
 module.exports = router;
 // each rount file needs to export the router, and import to server.js!

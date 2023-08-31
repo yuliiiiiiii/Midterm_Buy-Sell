@@ -38,18 +38,22 @@ router.get('/:id', (req, res) => {
       if (sellerId !== userId) {
         //if user is not the seller of the product, show buyer page
 
-        const templateVars = {
-          // picture: product.link_to_pic,
-          // name: product.name,
-          // description: product.description,
-          // price: `$${product.price_in_cents / 100}`,
-          // sold: product.sold,
-          id: product.id,
-          item: product,
-          favorite: favoriteQueries.getFavoriteByProductAndUserId(product.id, userId)
-          // It shows liked icon on every page so it does not work
-        };
-        res.render("Indi_item_buyer", templateVars);
+        favoriteQueries.getFavoriteByProductAndUserId(product.id, userId)
+        //getFavoriteByProductAndUserId returns a promise so needs a then after, in order to pass the result to a variable
+        .then(favorite => {
+          const templateVars = {
+            // picture: product.link_to_pic,
+            // name: product.name,
+            // description: product.description,
+            // price: `$${product.price_in_cents / 100}`,
+            // sold: product.sold,
+            id: product.id,
+            item: product,
+            favorite
+            // It shows liked icon on every page so it does not work
+          };
+          res.render("Indi_item_buyer", templateVars);
+        })
         return;
       }
 

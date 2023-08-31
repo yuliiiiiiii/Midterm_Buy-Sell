@@ -1,22 +1,28 @@
-<div class="card">
+<div class="row">
+  <div class="col s12">
 
-  <div class="card-image">
-    <img src="<%= item.link_to_pic %>" class="responsive-img materialboxed">
-    <span class="card-title" style="color:black; font-weight: bold" ;>
-      <%= item.name %>
-    </span>
-    <% if (item.sold) { %> <a class="btn btn-floating btn-large red halfway-fab">sold</a>
-      <% } %>
+    <div class="card">
+
+      <div class="card-image">
+        <img src="<%= item.link_to_pic %>" class="responsive-img materialboxed">
+        <span class="card-title" style="color:black; font-weight: bold" ;>
+          <%= item.name %>
+        </span>
+        <% if (item.sold) { %> <a class="btn btn-floating btn-large red halfway-fab">sold</a>
+          <% } %>
+      </div>
+
+      <div class="card-content">
+        <p>
+          By: seller id to change to name<%= item.seller_id %><br>
+            <%= item.description %><br>
+              <%= (item.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %><br>
+        </p>
+      </div>
+
+    </div>
+
   </div>
-
-  <div class="card-content">
-    <p>
-      By: seller id to change to name<%= item.seller_id %><br>
-        <%= item.description %><br>
-          <%= (item.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %><br>
-    </p>
-  </div>
-
 </div>
 
 

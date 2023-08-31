@@ -3,9 +3,9 @@
 
 <head>
   <title>Home Page</title>
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
@@ -23,38 +23,50 @@
 
 <body>
 
-<!-- not going to have time to implement this being different-->
+  <!-- not going to have time to implement this being different-->
   <!-- <div class="filter show-on-large hide-on-med-and-down">
     HORIZONTAL ROW OF CIRCLE CATEGORIES GOES HERE
     <div class="container"> -->
 
-      <!-- need to figure out how to make these buttons flat and in their own collumns -->
-      <form method="GET" action="/">
-        <a>
-          <input name="category" type="hidden" value="1">
-        <button class="centered btn-flat" type="submit">
-          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="portrait">
-          Portraits
-        </button>
-        </a>
-      </form>
+  <!-- need to figure out how to make these buttons flat and in their own collumns -->
+  <!-- <div class="container"> -->
+    <div class="row">
 
-      <form method="GET" action="/">
-        <input name="category" type="hidden" value="2">
-        <button type="submit">
-          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="landscape">
-          <div class="centered">Landscape</div>
-        </button>
-      </form>
+      <div class="col s1">
+        <form method="GET" action="/">
+          <a>
+            <input name="category" type="hidden" value="1">
+            <button class="centered btn-flat" type="submit">
+              <img src="https://cdn-icons-png.flaticon.com/512/656/656455.png" class="circle responsive-img" alt="portrait">
+              Portraits
+            </button>
+          </a>
+        </form>
+      </div>
 
+      <div class="col s1">
+        <form method="GET" action="/">
+          <a>
+            <input name="category" type="hidden" value="2">
+            <button class="centered btn-flat" type="submit">
+              <img src="https://static.thenounproject.com/png/16251-200.png" class="circle responsive-img"
+                alt="landscape">
+              Landscape
+            </button>
+          </a>
+        </form>
+      </div>
+
+      <div class="col s1">
       <form method="GET" action="/">
         <input name="category" type="hidden" value="3">
-        <button type="submit">
+        <button class="btn-flat" type="submit">
           <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="still life">
           <div class="centered">Still Life</div>
         </button>
       </form>
-
+    </div>
+</div>
       <form method="GET" action="/">
         <input name="category" type="hidden" value="4">
         <button type="submit">
@@ -72,14 +84,14 @@
       </form>
 
       <form method="GET" action="/">
-      <input name="category" type="hidden" value="7">
-      <button type="submit">
-        <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="Abstract">
-        <div class="centered">Abstract</div>
-      </button>
-    </form>
+        <input name="category" type="hidden" value="7">
+        <button type="submit">
+          <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="Abstract">
+          <div class="centered">Abstract</div>
+        </button>
+      </form>
 
-    <form method="GET" action="/">
+      <form method="GET" action="/">
         <input name="category" type="hidden" value="8">
         <button type="submit">
           <img src="http://placekitten.com/60/60" class="circle responsive-img" alt="Paintings">
@@ -94,9 +106,9 @@
           <div class="centered">Sculpture</div>
         </button>
       </form>
+    </div>
+  <!-- </div> -->
 
-  </div>
-  </div>
 
   <!-- not going to have time to implement this -->
   <!-- <div class="filter show-on-medium-and-down hide-on-large-only">
@@ -122,18 +134,18 @@
     </div>
 
 
-    <!-- how to make a grid -->
-    <div class="container allTheCards">
-      <div class="row"></div>
+
+    <div class="row">
       <% for (item of allArtData) { if (!item.is_deleted) { %>
 
-        <div class="col 14 m4 s12">
+        <!-- each card is shown on a gird which changes with screen size -->
+        <div class="col s12 m6 l4">
           <%- include('partials/_card.ejs', {item}); %>
 
         </div>
         <% }} %>
     </div>
-  </div>
+
 
 </body>
 

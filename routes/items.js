@@ -93,15 +93,33 @@ router.post('/:id/delete', (req,res) => {
    const product_id = req.params.id;
   //  console.log("product_id:", product_id);
    db
-   productQueries.changeToSoldByProductId(product_id)
-   .then(() => {
-    console.log("Product marked Sold!");
-    res.redirect(`/items/${product_id}`);
+   productQueries.getProductbyProductId(product_id)
+   .then(product => {
+    if (!product.sold) {
+
+        productQueries.changeToSoldByProductId(product.id)
+        .then(() => {
+         console.log("Product marked Sold!");
+         res.redirect(`/items/${product.id}`);
+        })
+        .catch(error => {
+         console.error(error);
+         res.send(error);
+        });
+    };
+    if (product.sold) {
+
+        productQueries.changeToNot_SoldByProductId(product.id)
+        .then(() => {
+          console.log("Product Not Sold!");
+          res.redirect(`/items/${product.id}`);
+         })
+         .catch(error => {
+          console.error(error);
+          res.send(error);
+         });
+    };
    })
-   .catch(error => {
-    console.error(error);
-    res.send(error);
-   });
  });
 
 module.exports = router;

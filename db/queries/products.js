@@ -81,4 +81,21 @@ RETURNING *;
 });
 };
 
-module.exports = { getAllProducts, getProductsbySeller, getProductbyProductId, filterProductByCategory, filterProductByPrice, deleteProduct, changeToSoldByProductId };
+const changeToNot_SoldByProductId = function(product_id) {
+  return db
+  .query(`
+  UPDATE product
+  SET sold = false
+  WHERE id = ${product_id}
+  RETURNING *;
+  `)
+  .then(res => {
+    console.log("Not Sold product:", res.rows[0]);
+    return;
+  })
+  .catch (error => {
+    console.log("error", error.message);
+  });
+};
+
+module.exports = { getAllProducts, getProductsbySeller, getProductbyProductId, filterProductByCategory, filterProductByPrice, deleteProduct, changeToSoldByProductId, changeToNot_SoldByProductId };

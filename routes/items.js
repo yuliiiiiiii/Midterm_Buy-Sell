@@ -13,9 +13,10 @@ router.get('/:id', (req, res) => {
   // const userId = 1;
   const userId = req.session.artist_id
 
-  // if(!userId) {
-    // return res.send({ error: "error" });
-  // }
+  //  if(!userId) {
+  //    return res.send({ error: "Please log in" });
+  //  };
+  // Need to check if user is logged in!!!!
 
   db
    productQueries.getProductbyProductId(product_id)
@@ -36,11 +37,12 @@ router.get('/:id', (req, res) => {
       //if user is not the seller of the product, show buyer page
 
     const templateVars = {
-      picture: product.link_to_pic,
-      name: product.name,
-      description: product.description,
-      price: `$${product.price_in_cents / 100}`,
-      sold: product.sold,
+      // picture: product.link_to_pic,
+      // name: product.name,
+      // description: product.description,
+      // price: `$${product.price_in_cents / 100}`,
+      // sold: product.sold,
+      id: product.id,
       item: product
       // still need to add more variable for header partial, and find way to hide sold
     };
@@ -52,11 +54,11 @@ router.get('/:id', (req, res) => {
       // if user is the seller of the product, show seller page
 
     const templateVars = {
-      picture: product.link_to_pic,
-      name: product.name,
-      description: product.description,
-      price:`$${product.price_in_cents / 100}`,
-      sold: product.sold,
+      // picture: product.link_to_pic,
+      // name: product.name,
+      // description: product.description,
+      // price:`$${product.price_in_cents / 100}`,
+      // sold: product.sold,
       id: product.id, //in order to make the delete post request!
       item: product
       // still need to add more variable for header partial, and find way to change sold status

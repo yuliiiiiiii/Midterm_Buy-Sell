@@ -1,14 +1,17 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo"><img src="/img/logo.png"></a>
+    <!-- <a href="/"><img class="brand-logo" src="/img/logo.png"></a> -->
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/auth/register">Register</a></li>
-      <li><a href="/auth/login">Login</a></li>
-      <li><form method="POST" action="/auth/logout">
-        <button type="submit">Logout</button>
-      </form></li>
-      <li><a href="/add-item">Sell your item</a></li>
-      <li><a href="/profile">Profile</a></li>
+      <% if (!'req.session') { %>
+        <li><a href="/auth/register">Register</a></li>
+        <li><a href="/auth/login">Login</a></li>
+      <% } else {%>
+        <li><form method="POST" action="/auth/logout">
+          <button type="submit">Logout</button>
+        </form></li>
+        <li><a href="/add-item">Sell your item</a></li>
+        <li><a href="/profile">Profile</a></li>
+      <% } %>
     </ul>
   </div>
 </nav>

@@ -1,9 +1,21 @@
 Artsy
 =========
 ## Screenshots
+!["Original Home Page"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/first_screen_main.png)
+!["Login"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/Login.png)
+!["Home Page Filters"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/home_filters.png)
+!["Buyer's View Of Item"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/buyers_view.png)
+!["Profile"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/profile.png)
+!["Profile - My Art"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/profile_my_art.png)
+!["Add Artwork To Sell"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/add_artwork_form.png)
+!["Seller's View Of Item"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/screenshots/sellers_item.png)
 
 ## Wire Frame, Routes and First Mockups
-!["Mockup"](https://github.com/CNormandB/tweeter/blob/master/public/images/Phone%2Btablet%20display.png)
+!["Mockup"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/planning/views.png)
+!["Small Routes"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/planning/routes.png)
+!["Routes Overview"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/planning/routes_large.png)
+!["Database Outline"](https://github.com/yuliiiiiiii/Midterm_Buy-Sell/blob/master/public/img/readme/planning/wire_frame.png)
+
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.

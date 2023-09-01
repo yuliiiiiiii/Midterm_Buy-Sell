@@ -54,7 +54,7 @@ router.get('/', (req, res) => {
       favoritesData = data[2];
       console.log('this is the favourites data',favoritesData )
       categoryData = data[3]
-      templateVars = { userData, sellersProducts, favoritesData , categoryData};
+      templateVars = { userData, sellersProducts, favoritesData , categoryData, artist_id: req.session && req.session.artist_id};
       return res.render('profile', templateVars);
     });
   }

@@ -162,6 +162,7 @@ router.post('/:id/like', (req, res) => {
   res.status(200)
   res.send()
 });
+})
 
-module.exports = router});
+module.exports = router;
 // each rount file needs to export the router, and import to server.js!

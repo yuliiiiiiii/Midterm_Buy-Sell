@@ -34,6 +34,18 @@ const getUserById = (id) => {
     });
 };
 
+const getUserByIdForItem = (id) => {
+  return db.query(`SELECT *
+                    FROM artist
+                    WHERE id=${id};`)
+    .then(res => {
+      return res.rows[0];
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 const addUser = (name, email, password) => {
   return db.query(
     `INSERT INTO artist (name, email, password)
@@ -49,4 +61,4 @@ const addUser = (name, email, password) => {
     });
 };
 
-module.exports = { getUsers, getUserByEmail, getUserById, addUser };
+module.exports = { getUsers, getUserByEmail, getUserById, addUser,getUserByIdForItem };

@@ -24,7 +24,7 @@ const getProductsbySeller = (id) => {
 };
 
 const getProductsbySellerWithName = (id) => {
-  return db.query(`SELECT *, artist.name as artist_name, product.name as product_name
+  return db.query(`SELECT *, product.id as product_id, artist.name as artist_name, product.name as product_name
                   FROM product
                   JOIN artist ON product.seller_id = artist.id
                   WHERE seller_id = ${id};`)

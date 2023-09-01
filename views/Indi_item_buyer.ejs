@@ -27,14 +27,13 @@
   <button class="waves-effect waves-light btn" type="submit">Like</button>
   </form>
 
+
       <div class="row">
         <form class="col s12">
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-              <label for="icon_prefix2">Write message here...</label>
-              <a href="mailto:<%= item.email %>?subject=I'd like to buy <%= item.name %>">
+              <a href="mailto:<%= item.email %>?subject=I'd%20like%20to%20buy%20<%= item.name %>&body=I%20am%20interested%20in%20this%20piece!">
               <button class="waves-effect waves-light btn" >Send Message</button>
               </a>
             </div>

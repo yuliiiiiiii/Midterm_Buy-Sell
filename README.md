@@ -1,6 +1,9 @@
-LHL Node Skeleton
+Artsy
 =========
+## Screenshots
 
+## Wire Frame, Routes and First Mockups
+!["Mockup"](https://github.com/CNormandB/tweeter/blob/master/public/images/Phone%2Btablet%20display.png)
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
@@ -42,3 +45,11 @@ The following steps are only for _one_ of the group members to perform.
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- bcrypt
+- chalk
+- cookie-session
+- dotenv
+- ejs
+- express
+- morgan
+- sass

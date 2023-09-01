@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
   };
   // Need to check if user is logged in!!!!
 
-  db;
+  db
   productQueries.getProductbyProductId(product_id)
     .then(product => {
       //product is an object
@@ -49,7 +49,8 @@ router.get('/:id', (req, res) => {
               // sold: product.sold,
               id: product.id,
               item: product,
-              favorite
+              favorite,
+              artist_id: req.session && req.session.artist_id
               // It shows liked icon on every page so it does not work
             };
             res.render("Indi_item_buyer", templateVars);
@@ -68,7 +69,8 @@ router.get('/:id', (req, res) => {
           // sold: product.sold,
           id: product.id, //in order to make the delete post request!
           item: product,
-          favorite: false
+          favorite: false,
+          artist_id: req.session && req.session.artist_id
         };
         res.render("Indi_item_seller", templateVars);
         return;
@@ -89,7 +91,7 @@ router.post('/:id/delete', (req, res) => {
     return res.send({ error: "Please log in" });
   };
 
-  db;
+  db
   productQueries.deleteProduct(product_id)
     .then(() => {
       console.log("Product deleted!");
@@ -110,7 +112,7 @@ router.post('/:id/sold', (req, res) => {
     return res.send({ error: "Please log in" });
   };
 
-  db;
+  db
   productQueries.getProductbyProductId(product_id)
     .then(product => {
 
@@ -147,22 +149,37 @@ router.post('/:id/like', (req, res) => {
     return res.send({ error: "Please log in" });
   };
 
-  db;
-  favoriteQueries.addFavorite(product_id, userId)
-    .then(favorite => {
-      console.log("Newly added favorite:", favorite);
-      res.redirect(`/items/${favorite.product_id}`);
+  db
+  favoriteQueries.getFavoriteByProductAndUserId(product_id, userId)
+  .then(result => {
+    if (!result) {
+      favoriteQueries.addFavorite(product_id, userId)
+    .then(() => {
+      console.log("+++Liked product!");
+      res.redirect(`/items/${product_id}`);
     })
     .catch(error => {
       console.error(error);
       res.send(error);
-    });
+    })
+    } else{
+      favoriteQueries.removeFavorite(product_id, userId)
+      .then(()=> {
+        console.log("+++product unliked!");
+        res.redirect(`/items/${product_id}`);
+      })
+    };
+  });
+});
+
+
+
   router.post('/:id/message', (req, res) => {
     //message logic here
     res.status(200);
     res.send();
   });
-});
+
 
 
 module.exports = router;

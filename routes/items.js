@@ -5,7 +5,6 @@ const router = express.Router();
 // const { Template } = require('ejs');
 const productQueries = require('../db/queries/products');
 const favoriteQueries = require('../db/queries/favorites');
-const userQueries = require('../db/queries/users')
 
 
 router.get('/:id', (req, res) => {
@@ -41,27 +40,22 @@ router.get('/:id', (req, res) => {
 
         favoriteQueries.getFavoriteByProductAndUserId(product.id, userId)
           //getFavoriteByProductAndUserId returns a promise so needs a then after, in order to pass the result to a variable
-          .then( favorite => {
-            userQueries.getUserByIdForItem(favorite.artist_id)
-            .then((user) => {
-              const templateVars = {
-                // picture: product.link_to_pic,
-                // name: product.name,
-                // description: product.description,
-                // price: `$${product.price_in_cents / 100}`,
-                // sold: product.sold,
-                id: product.id,
-                item: product,
-                favorite,
-                artist_id: req.session && req.session.artist_id,
-                user
-                // It shows liked icon on every page so it does not work
-              };
-              console.log(user);
-              res.render("Indi_item_buyer", templateVars);
-            });
-          return;
-            })
+          .then(favorite => {
+            const templateVars = {
+              // picture: product.link_to_pic,
+              // name: product.name,
+              // description: product.description,
+              // price: `$${product.price_in_cents / 100}`,
+              // sold: product.sold,
+              id: product.id,
+              item: product,
+              favorite,
+              artist_id: req.session && req.session.artist_id
+              // It shows liked icon on every page so it does not work
+            };
+            res.render("Indi_item_buyer", templateVars);
+          });
+        return;
       }
 
       if (sellerId === userId) {

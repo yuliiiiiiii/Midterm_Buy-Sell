@@ -23,25 +23,45 @@
 
 <body>
 
-
   <!-- need to give this its own space -->
   <div class="container">
+    <div class="row"></div>
     <div class="row">
-      Filter By Price:
-      <form method="GET" action="/">
-        <div class="input-field col s6">
-          <input name="min" id="min" type="number" class="validate">
-          <label for="Min">$ Min</label>
-        </div>
-        <div class="input-field col s6">
-          <input name="max" id="max" type="number" class="validate">
-          <label for="max">$ Max</label>
-        </div>
-        <button class="waves-effect waves-light btn" type="submit" id="filterByPriceButton">Filter Data</button>
-      </form>
+      <hr>
     </div>
 
+    <button class="filterbtn waves-effect waves-light btn" onclick="hideFunction()">Filters</button>
 
+    <div id="filters" style="display:none">
+
+      <!-- last mintute addition, shouldnt really go here -->
+      <script>
+        function hideFunction(){
+        var show = document.getElementById("filters")
+        var hide = document.getElementById("filterbtn")
+        show.style.display="block"
+        hide.style.display="none"
+        }
+        </script>
+
+      <div class="row">
+        <h6>Filter By Price:</h6>
+        <form method="GET" action="/">
+          <div class="input-field col s6">
+            <input name="min" id="min" type="number" class="validate">
+            <label for="Min">$ Min</label>
+          </div>
+          <div class="input-field col s6">
+            <input name="max" id="max" type="number" class="validate">
+            <label for="max">$ Max</label>
+          </div>
+          <button class="waves-effect waves-light btn" type="submit" id="filterByPriceButton">Filter Price</button>
+        </form>
+
+      </div>
+
+      <%- include('partials/_checkboxes_categories.ejs') %>
+    </div>
 
     <div class="row">
       <% for (item of allArtData) { if (!item.is_deleted) { %>

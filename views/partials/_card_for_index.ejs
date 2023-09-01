@@ -7,6 +7,9 @@
     </span>
     <% if (item.sold) { %> <a class="btn btn-floating btn-large red halfway-fab">sold</a>
       <% } %>
+
+      <% if (item.favorite) { %> <a class="btn btn-floating btn-large red halfway-fab"><i class="fa-solid fa-heart fa-xl" style="color: #f9f5f5;"></i></a>
+    <% } %>
   </div>
 
   <div class="card-content">

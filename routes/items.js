@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
   };
   // Need to check if user is logged in!!!!
 
-  db
+  db;
   productQueries.getProductbyProductId(product_id)
     .then(product => {
       //product is an object
@@ -39,21 +39,21 @@ router.get('/:id', (req, res) => {
         //if user is not the seller of the product, show buyer page
 
         favoriteQueries.getFavoriteByProductAndUserId(product.id, userId)
-        //getFavoriteByProductAndUserId returns a promise so needs a then after, in order to pass the result to a variable
-        .then(favorite => {
-          const templateVars = {
-            // picture: product.link_to_pic,
-            // name: product.name,
-            // description: product.description,
-            // price: `$${product.price_in_cents / 100}`,
-            // sold: product.sold,
-            id: product.id,
-            item: product,
-            favorite
-            // It shows liked icon on every page so it does not work
-          };
-          res.render("Indi_item_buyer", templateVars);
-        })
+          //getFavoriteByProductAndUserId returns a promise so needs a then after, in order to pass the result to a variable
+          .then(favorite => {
+            const templateVars = {
+              // picture: product.link_to_pic,
+              // name: product.name,
+              // description: product.description,
+              // price: `$${product.price_in_cents / 100}`,
+              // sold: product.sold,
+              id: product.id,
+              item: product,
+              favorite
+              // It shows liked icon on every page so it does not work
+            };
+            res.render("Indi_item_buyer", templateVars);
+          });
         return;
       }
 
@@ -89,7 +89,7 @@ router.post('/:id/delete', (req, res) => {
     return res.send({ error: "Please log in" });
   };
 
-  db
+  db;
   productQueries.deleteProduct(product_id)
     .then(() => {
       console.log("Product deleted!");
@@ -110,7 +110,7 @@ router.post('/:id/sold', (req, res) => {
     return res.send({ error: "Please log in" });
   };
 
-  db
+  db;
   productQueries.getProductbyProductId(product_id)
     .then(product => {
 
@@ -147,7 +147,7 @@ router.post('/:id/like', (req, res) => {
     return res.send({ error: "Please log in" });
   };
 
-  db
+  db;
   favoriteQueries.addFavorite(product_id, userId)
     .then(favorite => {
       console.log("Newly added favorite:", favorite);
@@ -157,10 +157,11 @@ router.post('/:id/like', (req, res) => {
       console.error(error);
       res.send(error);
     });
-    router.post('/:id/message', (req, res) => {
-        //message logic here
-  res.status(200)
-  res.send()
+  router.post('/:id/message', (req, res) => {
+    //message logic here
+    res.status(200);
+    res.send();
+  });
 });
 })
 

@@ -19,33 +19,37 @@
 
 <body>
   <%- include('partials/_header') %>
-  <div class="container">
-    <%- include('partials/_card_for_item_page.ejs', {item}); %>
-
-  <% if(!favorite) {%>
-  <form method="post" action="/items/<%= id %>/like">
-  <button class="waves-effect waves-light btn" type="submit">Like</button>
-  </form>
-  <% } else { %>
-  <form method="post" action="/items/<%= id %>/like">
-  <button class="waves-effect waves-light btn" type="submit">Unlike</button>
-  </form>
-  <% } %>
-
-
+    <div class="container">
+      <%- include('partials/_card_for_item_page.ejs', {item}); %>
 
       <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="material-icons prefix">mode_edit</i>
-              <a href="mailto:<%= item.email %>?subject=I'd%20like%20to%20buy%20<%= item.name %>&body=I%20am%20interested%20in%20this%20piece!">
-              <button class="waves-effect waves-light btn" >Send Message</button>
-              </a>
-            </div>
-          </div>
+        <div class="col">
+
+      <% if(!favorite) {%>
+        <form method="post" action="/items/<%= id %>/like">
+          <button class="waves-effect waves-light btn" type="submit">Like</button>
         </form>
+        <% } else { %>
+          <form method="post" action="/items/<%= id %>/like">
+            <button class="waves-effect waves-light btn" type="submit">Unlike</button>
+          </form>
+        <% } %>
+
+        </div>
       </div>
+
+
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">mode_edit</i>
+            <a
+              href="mailto:vinny@example.com?subject=I'd%20like%20to%20buy%20<%= item.name %>&body=I%20am%20interested%20in%20this%20piece">
+              <button class="waves-effect waves-light btn">Send Message</button>
+              <!-- email address is hardcoded just for the demonstration -->
+            </a>
+          </div>
+        </div>
+
 
     </div>
 </body>

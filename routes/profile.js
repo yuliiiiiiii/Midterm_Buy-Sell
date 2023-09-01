@@ -52,7 +52,7 @@ router.get('/', (req, res) => {
       sellersProducts = data[1];
       favoritesData = data[2];
       categoryData = data[3]
-      templateVars = { userData, sellersProducts, favoritesData , categoryData};
+      templateVars = { userData, sellersProducts, favoritesData , categoryData, artist_id: req.session && req.session.artist_id};
       return res.render('profile', templateVars);
     });
   }

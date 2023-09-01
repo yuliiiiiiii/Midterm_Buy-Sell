@@ -16,15 +16,30 @@ const getFavoritesOfUser = (id) => {
 //likedItem - An object containing all of the product details
 const addFavorite = function(product_id, artist_id) {
   return db
-    .query(`INSERT INTO favorite(product_id, artist_id)
+  .query(`INSERT INTO favorite(product_id, artist_id)
   VALUES($1, $2) RETURNING *;`, [product_id, artist_id])
     // artist_id is not dynamic, 'artistId'as second parameter
-    .then(res => {
-      return res.rows[0];
-    })
-    .catch(error => {
-      console.log(error.message);
-    });
+  .then(res => {
+    return res.rows[0];
+  })
+  .catch(error => {
+    console.log(error.message);
+  });
+};
+
+const removeFavorite = function(product_id, artist_id) {
+  return db
+  .query(`
+  DELETE FROM favorite
+  WHERE product_id = ${product_id} AND artist_id = ${artist_id} RETURNING *;
+  `)
+  .then(res => {
+    console.log("Unliked product:", res.rows[0]);
+    return;
+  })
+  .catch (error => {
+    console.log("error", error.message);
+  });
 };
 
 const getFavoriteByProductAndUserId = function(product_id, userId) {
@@ -43,4 +58,4 @@ const getFavoriteByProductAndUserId = function(product_id, userId) {
     });
 };
 
-module.exports = { getFavoritesOfUser, addFavorite, getFavoriteByProductAndUserId };
+module.exports = { getFavoritesOfUser, addFavorite, getFavoriteByProductAndUserId,removeFavorite };

@@ -22,10 +22,16 @@
   <div class="container">
     <%- include('partials/_card_for_item_page.ejs', {item}); %>
 
-
+  <% if(!favorite) {%>
   <form method="post" action="/items/<%= id %>/like">
   <button class="waves-effect waves-light btn" type="submit">Like</button>
   </form>
+  <% } else { %>
+  <form method="post" action="/items/<%= id %>/like">
+  <button class="waves-effect waves-light btn" type="submit">Unlike</button>
+  </form>
+  <% } %>
+
 
 
       <div class="row">

@@ -49,7 +49,8 @@ router.get('/:id', (req, res) => {
               // sold: product.sold,
               id: product.id,
               item: product,
-              favorite
+              favorite,
+              artist_id: req.session && req.session.artist_id
               // It shows liked icon on every page so it does not work
             };
             res.render("Indi_item_buyer", templateVars);
@@ -68,7 +69,8 @@ router.get('/:id', (req, res) => {
           // sold: product.sold,
           id: product.id, //in order to make the delete post request!
           item: product,
-          favorite: false
+          favorite: false,
+          artist_id: req.session && req.session.artist_id
         };
         res.render("Indi_item_seller", templateVars);
         return;

@@ -163,7 +163,6 @@ router.post('/:id/like', (req, res) => {
     res.send();
   });
 });
-})
 
 module.exports = router;
 // each rount file needs to export the router, and import to server.js!

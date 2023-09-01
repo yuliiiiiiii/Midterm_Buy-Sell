@@ -27,9 +27,10 @@ router.get('/', (req, res) => {
     //     .json({ error: err.message });
     // }),
 
-    productQueries.getProductsbySeller(req.session.artist_id)
+    productQueries.getProductsbySellerWithName(req.session.artist_id)
       .then(data => {
         const sellersProducts = data;
+        console.log("---------my items for sale", sellersProducts)
         return sellersProducts;
       }),
 

@@ -64,7 +64,7 @@
           <div class="row"></div>
           <% for (let item of favoritesData) { if (!item.is_deleted) { %>
             <div class="col m4 s12">
-              <%- include('partials/_card.ejs', {item}); %>
+              <%- include('partials/_card_for_fav.ejs', {item}); %>
             </div>
           <% }} %>
           </div>

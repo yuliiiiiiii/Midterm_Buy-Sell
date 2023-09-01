@@ -17,7 +17,7 @@
 
       <div class="card-content">
         <p>
-          By: seller id to change to name<%= item.seller_id %><br>
+          <strong>By: seller id to change to name<%= item.seller_id %></strong><br>
             <%= item.description %><br>
               <%= (item.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %><br>
         </p>

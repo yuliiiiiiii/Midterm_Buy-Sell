@@ -11,12 +11,12 @@
 
   <div class="card-content">
     <p>
-      <strong> By: <%= item.artist_name %> <br> </strong>
+      <strong>By: <%= item.artist_name %></strong><br>
         <%= item.description %><br>
           <%= (item.price_in_cents/100).toLocaleString("en-US", {style:"currency", currency:"USD"}) %><br>
     </p>
 
-    <p><a href="/items/<%= item.id %>">Click for Details</a><br></p>
+    <p><a href="/items/<%= item.product_id %>">Click for Details</a><br></p>
 
         <hr>
 

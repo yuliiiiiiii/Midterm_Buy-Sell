@@ -27,13 +27,14 @@
       </form>
 
       <div class="row">
-        <form class="col s12" method="POST" action="/:id/message">
+        <form class="col s12" method="POST" action="<%= id %>/message">
           <div class="row">
             <div class="input-field col s6">
-              <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-              <label for="icon_prefix2">Write message here...</label>
-              <button type="submit">Send Message</button>
+              <a href = "mailto: abc@example.com">Send Email</a>
+              <!-- <i class="material-icons prefix">mode_edit</i>
+               <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+               <label for="icon_prefix2">Write message here...</label>
+               <button type="submit">Send Message</button>-->
             </div>
           </div>
         </form>

@@ -124,6 +124,8 @@ router.post('/:id', (req, res) => {
 
 router.post('/:id/message', (req, res) => {
   //message logic here
+  res.status(200)
+  res.send()
 });
 
 module.exports = router;

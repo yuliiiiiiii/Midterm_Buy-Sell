@@ -157,6 +157,10 @@ router.post('/:id/like', (req, res) => {
       console.error(error);
       res.send(error);
     });
+    router.post('/:id/message', (req, res) => {
+        //message logic here
+  res.status(200)
+  res.send()
 });
 
 module.exports = router;
